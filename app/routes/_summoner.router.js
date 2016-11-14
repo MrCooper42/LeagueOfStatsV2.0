@@ -1,21 +1,6 @@
-// ```
-// _summoner.js
-// (c) 2016 David Newman
-// david.r.niciforovic@gmail.com
-// _summoner.js may be freely distributed under the MIT license
-// ```
-
 // */app/routes/_summoner.router.js*
 
 // ## Summoner API object
-
-// HTTP Verb  Route                 Description
-
-// GET        /api/summoner             Get all of the summoner items
-// GET        /api/summoner/:summoner_id    Get a single summoner item by summoner item id
-// POST       /api/summoner             Create a single summoner item
-// DELETE     /api/summoner/:summoner_id    Delete a single summoner item
-// PUT        /api/summoner/:summoner_id    Update a summoner item with new info
 
 // Load the summoner model
 import Summoner from '../models/summoner.model';

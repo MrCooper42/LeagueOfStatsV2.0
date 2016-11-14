@@ -2,12 +2,7 @@
 
 // ## User Model
 
-// Note: MongoDB will autogenerate an _id for each User object created
-
-// Grab the Mongoose module
 import mongoose from 'mongoose';
-
-// Import library to hash passwords
 import bcrypt from 'bcrypt-nodejs';
 
 // Define the schema for the showcase item

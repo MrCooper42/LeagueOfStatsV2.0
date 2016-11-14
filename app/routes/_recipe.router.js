@@ -1,21 +1,6 @@
-// ```
-// _recipe.router.js
-// (c) 2016 David Newman
-// david.r.niciforovic@gmail.com
-// _recipe.router.js may be freely distributed under the MIT license
-// ```
-
 // */app/routes/_recipe.router.js*
 
 // # Recipe API object
-
-// HTTP Verb  Route                   Description
-
-// GET        /api/recipe             Get all of the recipes
-// GET        /api/recipe/:recipe_id  Get a single recipe by recipe id
-// POST       /api/recipe             Create a single recipe
-// DELETE     /api/recipe/:recipe_id  Delete a single recipe
-// PUT        /api/recipe/:recipe_id  Update a recipe with new info
 
 // Load the `recipe` model
 import Recipe from '../models/recipe.model';

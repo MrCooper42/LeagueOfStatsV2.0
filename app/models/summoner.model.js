@@ -1,10 +1,3 @@
-// ```
-// summoner.model.js
-// (c) 2016 David Newman
-// david.r.niciforovic@gmail.com
-// summoner.model.js may be freely distributed under the MIT license
-// ```
-
 // */app/models/summoner.model.js*
 
 // ## Summoner Model
