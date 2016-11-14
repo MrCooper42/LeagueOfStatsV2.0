@@ -24,7 +24,7 @@ describe('App', () => {
 
   it('should have text in footer', () => {
     let subject = element(by.css('app #footerText')).getText();
-    let result  = 'Angular 2 MEAN Webpack Starter by @datatype_void';
+    let result  = 'Angular 2 MEAN & D3 for League of Legend Stats';
     expect(subject).toEqual(result);
   });
 

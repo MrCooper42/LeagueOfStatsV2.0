@@ -1,10 +1,3 @@
-// ```
-// user.model.js
-// (c) 2016 David Newman
-// david.r.niciforovic@gmail.com
-// user.model.js may be freely distributed under the MIT license
-// ```
-
 // */app/models/user.model.js*
 
 // ## User Model

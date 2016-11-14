@@ -3,7 +3,10 @@
 
 # TEAM
 
-  <name> -- <role> -- <twitter>
+  <name>
+  Matthew Cooper -- <role> -- <twitter>
+  Scotty Van Gilder -- <role> -- <twitter>
+  Zack Dille -- <role> -- <twitter>
 
 # THANKS
 

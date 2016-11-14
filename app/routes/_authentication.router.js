@@ -1,23 +1,3 @@
-// ```
-// _authentication.router.js
-// (c) 2016 David Newman
-// david.r.niciforovic@gmail.com
-// _authentication.router.js may be freely distributed under the MIT license
-// ```
-
-// */app/routes/_authentication.router.js*
-
-// GET    */api/auth/user*        Get user data from session object in
-//                                Node
-
-// GET    */api/auth/loggedin*    Route to test if the user is logged in
-//                                or not
-
-// POST   */api/auth/login*       Route to login
-
-// POST   */api/auth/logout*      Route to logout and redirect to the
-//                                appropriate view
-
 // ## Authentication API object
 
 // Load user model

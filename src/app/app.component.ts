@@ -25,8 +25,8 @@ import {Home} from './home';
 // Import NgFor directive
 import {NgFor} from '@angular/common';
 
-// Import Todo component
-import {Todo} from './todo/todo.component';
+// Import Summoner component
+import {Summoner} from './summoner/summoner.component';
 
 // Import Recipes component
 import {Recipes} from './recipes/recipes.component';
@@ -38,7 +38,7 @@ import {Recipes} from './recipes/recipes.component';
 @Component({
   selector: 'app',
   providers: [  ],
-  directives: [ Todo,
+  directives: [ Summoner,
                 NgFor,
                 RouterActive],
   encapsulation: ViewEncapsulation.None,
@@ -56,8 +56,8 @@ import {Recipes} from './recipes/recipes.component';
           <button md-button router-active [routerLink]=" ['Home'] ">
             Home
           </button>
-          <button md-button router-active [routerLink]=" ['Todo'] ">
-            Todo
+          <button md-button router-active [routerLink]=" ['Summoner'] ">
+            Summoner
           </button>
           <button md-button router-active [routerLink]=" ['Recipes'] ">
             Recipes
@@ -76,7 +76,7 @@ import {Recipes} from './recipes/recipes.component';
 
       <footer>
         <img [src]="angularLogo" width="7%">
-        <span>Angular 2 MEAN Webpack Starter by <a [href]="url">@datatype_void</a></span>
+        <span>Angular 2 MEAN Webpack with D3 <a [href]="url">enter url here</a></span>
       </footer>
     </md-content>
   `
@@ -84,7 +84,7 @@ import {Recipes} from './recipes/recipes.component';
 @RouteConfig([
   { path: '/', name: 'Index', component: Home, useAsDefault: true },
   { path: '/home',  name: 'Home',  component: Home },
-  { path: '/todo', component: Todo, name: 'Todo' },
+  { path: '/summoner', component: Summoner, name: 'Summoner' },
   { path: '/redux', component: Recipes, name: 'Recipes' },
   // Async load a component using Webpack's require with
   // es6-promise-loader and webpack `require`
@@ -92,8 +92,8 @@ import {Recipes} from './recipes/recipes.component';
 ])
 export class App {
   angularLogo = 'assets/img/angular-logo.png';
-  name = 'Angular 2 MEAN Webpack Starter';
-  url = 'https://twitter.com/datatype_void';
+  name = 'League of Stats';
+  url = '';
 
   // Pass in our application `state`
   // Alternative to using `redux`
@@ -105,8 +105,3 @@ export class App {
     console.log('Initial App State', this.appState.state);
   }
 }
-
-/*
- * For help or questions please contact us at @datatype_void on twitter
- * or our chat on Slack at http://www.davidniciforovic.com/wp-login.php?action=slack-invitation
- */
