@@ -23,8 +23,6 @@ export default (app, router) => {
     // Create a summoner item
     .post((req, res) => {
 
-      console.log(req.body, "body");
-
       Summoner.create({
 
         text : req.body.text
