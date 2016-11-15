@@ -729,7 +729,7 @@ let matchSchema = new mongoose.Schema({
         }
       }
     }
-  },{
+  }, {
     championId: {
       type: Number,
       required: true
@@ -1198,7 +1198,7 @@ let matchSchema = new mongoose.Schema({
         }
       }
     }
-  },{
+  }, {
     championId: {
       type: Number,
       required: true
@@ -1667,7 +1667,7 @@ let matchSchema = new mongoose.Schema({
         }
       }
     }
-  },{
+  }, {
     championId: {
       type: Number,
       required: true
@@ -2136,7 +2136,7 @@ let matchSchema = new mongoose.Schema({
         }
       }
     }
-  },{
+  }, {
     championId: {
       type: Number,
       required: true
@@ -2605,7 +2605,7 @@ let matchSchema = new mongoose.Schema({
         }
       }
     }
-  },{
+  }, {
     championId: {
       type: Number,
       required: true
@@ -3074,7 +3074,7 @@ let matchSchema = new mongoose.Schema({
         }
       }
     }
-  },{
+  }, {
     championId: {
       type: Number,
       required: true
@@ -3543,7 +3543,7 @@ let matchSchema = new mongoose.Schema({
         }
       }
     }
-  },{
+  }, {
     championId: {
       type: Number,
       required: true
@@ -4012,7 +4012,7 @@ let matchSchema = new mongoose.Schema({
         }
       }
     }
-  },{
+  }, {
     championId: {
       type: Number,
       required: true
@@ -4481,7 +4481,7 @@ let matchSchema = new mongoose.Schema({
         }
       }
     }
-  },{
+  }, {
     championId: {
       type: Number,
       required: true
@@ -4963,5 +4963,189 @@ let matchSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  
-})
+  season: {
+    type: String,
+    required: true
+  },
+  teams: [{
+    bans: [{
+      championId: {
+        type: Number,
+        required: true
+      },
+      pickTurn: {
+        type: Number,
+        required: true
+      }
+    }, {
+      championId: {
+        type: Number,
+        required: true
+      },
+      pickTurn: {
+        type: Number,
+        required: true
+      }
+    }, {
+      championId: {
+        type: Number,
+        required: true
+      },
+      pickTurn: {
+        type: Number,
+        required: true
+      }
+    }],
+    baronKills: {
+      type: Number,
+      required: true
+    },
+    dominionVictoryScore: {
+      type: Number,
+      required: true
+    },
+    dragonKills: {
+      type: Number,
+      required: true
+    },
+    firstBaron: {
+      type: Boolean,
+      required: true
+    },
+    firstBlood: {
+      type: Boolean,
+      required: true
+    },
+    firstDragon: {
+      type: Boolean,
+      required: true
+    },
+    firstInhibitor: {
+      type: Boolean,
+      required: true
+    },
+    firstRiftHerald: {
+      type: Boolean,
+      required: true
+    },
+    firstTower: {
+      type: Boolean,
+      required: true
+    },
+    inhibitorKills: {
+      type: Number,
+      required: true
+    },
+    riftHeraldKills: {
+      type: Number,
+      required: true
+    },
+    teamId: {
+      type: Number,
+      required: true
+    },
+    towerKills: {
+      type: Number,
+      required: true
+    },
+    vilemawKills: {
+      type: Number,
+      required: true
+    },
+    winner: {
+      type: Boolean,
+      required: true
+    }
+  }, {
+    bans: [{
+      championId: {
+        type: Number,
+        required: true
+      },
+      pickTurn: {
+        type: Number,
+        required: true
+      }
+    }, {
+      championId: {
+        type: Number,
+        required: true
+      },
+      pickTurn: {
+        type: Number,
+        required: true
+      }
+    }, {
+      championId: {
+        type: Number,
+        required: true
+      },
+      pickTurn: {
+        type: Number,
+        required: true
+      }
+    }],
+    baronKills: {
+      type: Number,
+      required: true
+    },
+    dominionVictoryScore: {
+      type: Number,
+      required: true
+    },
+    dragonKills: {
+      type: Number,
+      required: true
+    },
+    firstBaron: {
+      type: Boolean,
+      required: true
+    },
+    firstBlood: {
+      type: Boolean,
+      required: true
+    },
+    firstDragon: {
+      type: Boolean,
+      required: true
+    },
+    firstInhibitor: {
+      type: Boolean,
+      required: true
+    },
+    firstRiftHerald: {
+      type: Boolean,
+      required: true
+    },
+    firstTower: {
+      type: Boolean,
+      required: true
+    },
+    inhibitorKills: {
+      type: Number,
+      required: true
+    },
+    riftHeraldKills: {
+      type: Number,
+      required: true
+    },
+    teamId: {
+      type: Number,
+      required: true
+    },
+    towerKills: {
+      type: Number,
+      required: true
+    },
+    vilemawKills: {
+      type: Number,
+      required: true
+    },
+    winner: {
+      type: Boolean,
+      required: true
+    }
+  }]
+});
+
+export default mongoose.model('match',matchSchema);
