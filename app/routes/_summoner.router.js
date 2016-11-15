@@ -5,8 +5,7 @@
 // Load the summoner model
 import Summoner from '../models/summoner.model';
 
-// import * as lolapi from 'lolapi';
-// import * as d3 from 'd3';
+import * as lolapi from 'lolapi';
 
 export default (app, router) => {
 
@@ -48,7 +47,7 @@ export default (app, router) => {
 
     // Accessed at GET http://localhost:8080/api/summoner
     .get((req, res) => {
-
+      console.log(req);
       // Use mongoose to get all summoner items in the database
       Summoner.find((err, summoner) => {
 

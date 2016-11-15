@@ -28,6 +28,9 @@ import {NgFor} from '@angular/common';
 // Import Summoner component
 import {Summoner} from './summoner/summoner.component';
 
+// Import SummonerD3 component
+import {SummonerD3} from './summoner/summonerD3.component';
+
 // Import Recipes component
 import {Recipes} from './recipes/recipes.component';
 
