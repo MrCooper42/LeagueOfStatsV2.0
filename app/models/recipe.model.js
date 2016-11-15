@@ -1,10 +1,3 @@
-// ```
-// recipe.model.js
-// (c) 2016 David Newman
-// david.r.niciforovic@gmail.com
-// recipe.model.js may be freely distributed under the MIT license
-// ```
-
 // */app/models/recipe.model.js*
 
 // # Recipe Model

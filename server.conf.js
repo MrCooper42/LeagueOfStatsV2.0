@@ -1,10 +1,3 @@
-// ```
-// server.conf.js
-// (c) 2016 David Newman
-// david.r.niciforovic@gmail.com
-// server.conf.js may be freely distributed under the MIT license
-// ```
-
 // *server.conf.js*
 
 //  This is the file where we will:

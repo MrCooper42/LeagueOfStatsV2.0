@@ -1,10 +1,3 @@
-// ```
-// gulpfile.conf.js
-// (c) 2016 David Newman
-// david.r.niciforovic@gmail.com
-// gulpfile.conf.js may be freely distributed under the MIT license
-// ```
-
 // *gulpfile.js*
 
 // Import gulp packages

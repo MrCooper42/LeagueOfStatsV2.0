@@ -1,12 +1,4 @@
-// ```
-// mongoose.conf.js
-// (c) 2016 David Newman
-// david.r.niciforovic@gmail.com
-// mongoose.conf.js may be freely distributed under the MIT license
-// ```
-
 // *mongoose.conf.js*
-
 export default (mongoose) => {
 
   let gracefulExit = function() {
