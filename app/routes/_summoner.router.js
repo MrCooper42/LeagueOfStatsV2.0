@@ -5,6 +5,9 @@
 // Load the summoner model
 import Summoner from '../models/summoner.model';
 
+// import * as lolapi from 'lolapi';
+// import * as d3 from 'd3';
+
 export default (app, router) => {
 
   // ### Summoner API Routes
@@ -19,6 +22,8 @@ export default (app, router) => {
 
     // Create a summoner item
     .post((req, res) => {
+
+      console.log(req.body, "body");
 
       Summoner.create({
 

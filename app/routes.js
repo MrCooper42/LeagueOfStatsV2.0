@@ -1,10 +1,3 @@
-// ```
-// routes.js
-// (c) 2015 David Newman
-// david.r.niciforovic@gmail.com
-// routes.js may be freely distributed under the MIT license
-// ```
-
 // */app/routes.js*
 
 // ## Node API Routes
