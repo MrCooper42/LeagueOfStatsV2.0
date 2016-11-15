@@ -10,7 +10,7 @@ import {HTTP_PROVIDERS} from '@angular/http';
 import {NgFor} from '@angular/common';
 
 import * as d3 from 'd3';
-import * as lolapi from 'lolapi';
+
 import {Summoner} from './summoner.component';
 
 @Component({
@@ -22,13 +22,6 @@ import {Summoner} from './summoner.component';
 })
 
 export class SummonerD3 {
-  const summoners = {};
-  console.log("I am here")
-  console.log(Summoner, "summonerd");
-  // Initialize our `summonerData.summoner` to an empty `string`
-  summonerData = {
-    text: ''
-  };
 
   private summoners: Array<Summoner> = [];
 
@@ -39,33 +32,10 @@ export class SummonerD3 {
     summonerService.getAll()
       // `Rxjs`; we subscribe to the response
       .subscribe((res) => {
-
+        console.log(res)
         // Populate our `summoner` array with the `response` data
         this.summoners = res;
         // Reset `summoner` input
-        this.summonerData.text = '';
-      });
-  }
-
-  createSummoner() {
-
-    this.summonerService.createSummoner(this.summonerData)
-      .subscribe((res) => {
-
-        // Populate our `summoner` array with the `response` data
-        this.summoners = res;
-        // Reset `summoner` input
-        this.summonerData.text = '';
-      });
-  }
-
-  deleteSummoner(id) {
-
-    this.summonerService.deleteSummoner(id)
-      .subscribe((res) => {
-
-        // Populate our `summoner` array with the `response` data
-        this.summoners = res;
       });
   }
 }

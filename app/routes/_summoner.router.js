@@ -5,7 +5,7 @@
 // Load the summoner model
 import Summoner from '../models/summoner.model';
 
-import * as lolapi from 'lolapi';
+import * as leaguetn from 'league-typenode';
 
 export default (app, router) => {
 
@@ -47,7 +47,6 @@ export default (app, router) => {
 
     // Accessed at GET http://localhost:8080/api/summoner
     .get((req, res) => {
-      console.log(req);
       // Use mongoose to get all summoner items in the database
       Summoner.find((err, summoner) => {
 
@@ -55,6 +54,15 @@ export default (app, router) => {
           res.send(err);
 
         else
+        console.log(summoner, "summoner");
+          var tn: leaguetb.LeagueTypenode = new leaguetn.LeagueTypenode('RGAPI-19efd6ff-0624-46a1-b90c-f491801608d0', false);
+          var d3Summoner = tn.getSummonerByNames("na", summoner[1].text, (error, summoners) => {
+            if(err){
+              res.send(err)
+            }
+            console.log(summoners[summoners.indexOf(summoner)], "some logged stuff");
+          })
+          console.log(summoners, "d3Summoner");
           res.json(summoner);
       });
     });
