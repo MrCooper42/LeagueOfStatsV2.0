@@ -3,10 +3,9 @@
 
 # TEAM
 
-  <name>
   Matthew Cooper -- <role> -- <twitter>
   Scotty Van Gilder -- <role> -- <twitter>
-  Zack Dille -- <role> -- <twitter>
+  Zack Dillie -- <role> -- <twitter>
 
 # THANKS
 
@@ -18,4 +17,4 @@
 # TECHNOLOGY COLOPHON
 
   HTML5, CSS3
-  Angular2, TypeScript, Webpack
+  Angular2, TypeScript, Webpack, D3

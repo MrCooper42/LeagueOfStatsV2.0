@@ -1,3 +1,69 @@
+
+# development
+# package front-end files with Webpack and hot reload
+# upon any changes
+$ npm start
+# use `Gulp` in a second terminal to run the Express
+# app responsible for our back-end
+$ gulp serve
+# optionally use `Gulp` in a third terminal to auto
+# generate documentation and lint `Sass`
+$ gulp
+
+# production
+$ npm run build:prod
+$ npm run server:prod
+
+
+# WE WILL NEED TO WORK MORE WITH SETTING PACKAGE.JSON AND CONFIG.JSON FILE SETTINGS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 [![Dependency Status](https://david-dm.org/datatypevoid/vulgar.svg)](https://david-dm.org/datatypevoid/vulgar) [![volkswagen status](https://auchenberg.github.io/volkswagen/volkswargen_ci.svg?v=1)](https://travis-ci.org/datatypevoid/vulgar) [![GitHub tag](https://img.shields.io/github/tag/datatypevoid/vulgar.svg?maxAge=2592000)](https://github.com/datatypevoid/vulgar) [![Issue Stats](http://issuestats.com/github/datatypevoid/vulgar/badge/pr?style=flat)](http://issuestats.com/github/datatypevoid/vulgar) [![Issue Stats](http://issuestats.com/github/datatypevoid/vulgar/badge/issue?style=flat)](http://issuestats.com/github/datatypevoid/vulgar) [![Stack Share](http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](stackshare.io/datatypevoid/vulgar) [![Angular 2 Style Guide](https://mgechev.github.io/angular2-style-guide/images/badge.svg)](https://github.com/mgechev/angular2-style-guide)
 
 [![MEAN with NG2 and Webpack](https://cloud.githubusercontent.com/assets/10481547/13732046/5ba42ab0-e94f-11e5-9962-ab04cbd6779f.png)](http://www.davidniciforovic.com)
