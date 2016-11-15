@@ -13,7 +13,7 @@ import {NgFor} from '@angular/common';
 // Create metadata with the `@Component` decorator
 @Component({
     // HTML tag for specifying this component
-    selector: 'text',
+    selector: 'summoner',
     // Let Angular 2 know about `Http` and `SummonerService`
     providers: [...HTTP_PROVIDERS, SummonerService],
     template: require('./summoner.html')
@@ -34,8 +34,7 @@ export class Summoner {
       summonerService.getAll()
         // `Rxjs`; we subscribe to the response
         .subscribe((res) => {
-          console.log(res, "res in get all")
-          console.log(this, "this in get all")
+
             // Populate our `summoner` array with the `response` data
             this.summoners = res;
             // Reset `summoner` input
@@ -44,10 +43,9 @@ export class Summoner {
   }
 
   createSummoner() {
-    console.log(this.summonerData, "some log bullshit");
+
       this.summonerService.createSummoner(this.summonerData)
         .subscribe((res) => {
-          console.log(res, "res")
             // Populate our `summoner` array with the `response` data
             this.summoners = res;
             // Reset `summoner` input
