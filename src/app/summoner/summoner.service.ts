@@ -29,6 +29,7 @@ export class SummonerService {
   }
 
   createSummoner(data) {
+
     let headers = new Headers();
 
     headers.append('Content-Type', 'application/json');
