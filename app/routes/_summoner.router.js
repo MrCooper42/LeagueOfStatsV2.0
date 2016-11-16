@@ -26,7 +26,7 @@ export default(app, router) => {
 
     var query = Summoner.find({text: req.body.text})
 
-    query.exec((err,summoned) => {
+    query.exec((err, summoned) => {
       if (!summoned.length) { //there is no user
         tn.getSummonerByNames("na", req.body.text, (err, summoner) => {
           if (err) {
@@ -60,7 +60,7 @@ export default(app, router) => {
           res.json(summoners);
         })
       }
-    }).then(console.log("i hit the then"))
+    })
   })
 
   // ### Get all of the summoner items
