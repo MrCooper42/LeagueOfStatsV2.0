@@ -7,7 +7,9 @@ import Summoner from '../models/summoner.model';
 
 import * as leaguetn from 'league-typenode';
 
-export default (app, router) => {
+var tn : leaguetb.LeagueTypenode = new leaguetn.LeagueTypenode('RGAPI-19efd6ff-0624-46a1-b90c-f491801608d0', false);
+
+export default(app, router) => {
 
   // ### Summoner API Routes
 
@@ -15,131 +17,137 @@ export default (app, router) => {
 
   router.route('/summoner')
 
-    // ### Create a summoner item
+  // ### Create a summoner item
 
-    // Accessed at POST http://localhost:8080/api/summoner
+  // Accessed at POST http://localhost:8080/api/summoner
 
-    // Create a summoner item
+  // Create a summoner item
     .post((req, res) => {
 
-      Summoner.create({
-
-        text : req.body.text
-
-      }, (err, summoner) => {
-
-        if (err)
-          res.send(err);
-
-        // DEBUG
-        console.log(`Summoner created: ${summoner}`);
-
-        Summoner.find((err, summoners) => {
-          if(err)
-            res.send(err);
-
-          res.json(summoners);
-        });
-      });
-    })
-
-    // ### Get all of the summoner items
-
-    // Accessed at GET http://localhost:8080/api/summoner
-    .get((req, res) => {
-      // Use mongoose to get all summoner items in the database
-      Summoner.find((err, summoner) => {
-
-        if(err)
-          res.send(err);
-
-        else
-        console.log(summoner, "summoner");
-          var tn: leaguetb.LeagueTypenode = new leaguetn.LeagueTypenode('RGAPI-19efd6ff-0624-46a1-b90c-f491801608d0', false);
-          var d3Summoner = tn.getSummonerByNames("na", summoner[1].text, (error, summoners) => {
-            if(err){
-              res.send(err)
-            }
-            console.log(summoners[summoners.indexOf(summoner)], "some logged stuff");
-          })
-          console.log(summoners, "d3Summoner");
-          res.json(summoner);
-      });
-    });
-
-  router.route('/summoner/:summoner_id')
-
-    // ### Get a summoner item by ID
-
-    // Accessed at GET http://localhost:8080/api/summoner/:summoner_id
-    .get((req, res) => {
-
-      // Use mongoose to a single summoner item by id in the database
-      Summoner.findOne(req.params.summoner_id, (err, summoner) => {
-
-        if(err)
-          res.send(err);
-
-        else
-          res.json(summoner);
-      });
-    })
-
-    // ### Update a summoner item by ID
-
-    // Accessed at PUT http://localhost:8080/api/summoner/:summoner_id
-    .put((req, res) => {
-
-      // use our summoner model to find the summoner item we want
-      Summoner.findOne({
-
-        '_id' : req.params.summoner_id
-
-      }, (err, summoner) => {
-
-        if (err)
-          res.send(err);
-
-        // Only update a field if a new value has been passed in
-        if (req.body.text)
-          summoner.text = req.body.text;
-
-        // save the summoner item
-        return summoner.save((err) => {
+    Summoner.find((err, summoners) => {
+      console.log(summoners, "summoners");
+      summoners.forEach((summoner) => {
+        if (req.body.text == summoner.text) {
+          res.end()
+        }
+      })
+      tn.getSummonerByNames("na", req.body.text, (err, summoners) => {
+        if (err) {
+          res.send(err)
+        }
+        Summoner.create({
+          text: req.body.text,
+          id: summoners.id,
+          profileIconId: 1211
+        }, (err, summoner) => {
 
           if (err)
             res.send(err);
 
-          return res.send(summoner);
-
+          // DEBUG
+          console.log(`Summoner created: ${summoner}`);
         });
-      });
-    })
+      })
 
-    // ### Delete a summoner item by ID
-
-    // Accessed at DELETE http://localhost:8080/api/summoner/:summoner_id
-    .delete((req, res) => {
-
-      // DEBUG
-      console.log(`Attempting to delete summoner with id: ${req.params.summoner_id}`);
-
-      Summoner.remove({
-
-        _id : req.params.summoner_id
-      }, (err, summoner) => {
-
-        if(err)
+      Summoner.find((err, summoners) => {
+        if (err)
           res.send(err);
 
-        console.log('Summoner successfully deleted!');
+        res.json(summoners);
+      });
+    })
+  })
 
-        Summoner.find((err, summoners) => {
-          if(err)
-            res.send(err);
+  // ### Get all of the summoner items
 
-          res.json(summoners);
-        });
+  // Accessed at GET http://localhost:8080/api/summoner
+    .get((req, res) => {
+    // Use mongoose to get all summoner items in the database
+    Summoner.find((err, summoner) => {
+
+      if (err) {
+        res.send(err);
+      } else
+        //make matchList query here
+        res.json(summoner);
+      }
+    );
+  });
+
+  router.route('/summoner/:summoner_id')
+
+  // ### Get a summoner item by ID
+
+  // Accessed at GET http://localhost:8080/api/summoner/:summoner_id
+    .get((req, res) => {
+
+    // Use mongoose to a single summoner item by id in the database
+    Summoner.findOne(req.params.summoner_id, (err, summoner) => {
+
+      if (err)
+        res.send(err);
+
+else
+        res.json(summoner);
+      }
+    );
+  })
+
+  // ### Update a summoner item by ID
+
+  // Accessed at PUT http://localhost:8080/api/summoner/:summoner_id
+    .put((req, res) => {
+
+    // use our summoner model to find the summoner item we want
+    Summoner.findOne({
+
+      '_id': req.params.summoner_id
+
+    }, (err, summoner) => {
+
+      if (err)
+        res.send(err);
+
+      // Only update a field if a new value has been passed in
+      if (req.body.text)
+        summoner.text = req.body.text;
+
+      // save the summoner item
+      return summoner.save((err) => {
+
+        if (err)
+          res.send(err);
+
+        return res.send(summoner);
+
       });
     });
+  })
+
+  // ### Delete a summoner item by ID
+
+  // Accessed at DELETE http://localhost:8080/api/summoner/:summoner_id
+    .delete((req, res) => {
+
+    // DEBUG
+    console.log(`Attempting to delete summoner with id: ${req.params.summoner_id}`);
+
+    Summoner.remove({
+
+      _id: req.params.summoner_id
+    }, (err, summoner) => {
+
+      if (err)
+        res.send(err);
+
+      console.log('Summoner successfully deleted!');
+
+      Summoner.find((err, summoners) => {
+        if (err)
+          res.send(err);
+
+        res.json(summoners);
+      });
+    });
+  });
 };
