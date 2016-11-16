@@ -17,6 +17,7 @@ import {Component, ViewEncapsulation} from '@angular/core';
 import {RouteConfig, Router} from '@angular/router-deprecated';
 
 import {AppState} from './app.service';
+import {AuthService} from './auth/auth.service';
 
 import {RouterActive} from './shared/directives/router-active/router-active.directive';
 
@@ -24,6 +25,10 @@ import {Home} from './home';
 
 // Import NgFor directive
 import {NgFor} from '@angular/common';
+
+// Auth component
+import {SigninComponent} from './auth/signin.component';
+import {SignupComponent} from './auth/signup.component';
 
 // Import Summoner component
 import {Summoner} from './summoner/summoner.component';
@@ -53,11 +58,11 @@ import {Recipes} from './recipes/recipes.component';
       <md-toolbar color="primary">
           <span>{{ name }}</span>
           <span class="fill"></span>
-          <button md-button router-active [routerLink]=" ['Index'] ">
-            Index
+          <button md-button router-active [routerLink]=" ['Signin'] ">
+            Sign In
           </button>
-          <button md-button router-active [routerLink]=" ['Home'] ">
-            Home
+          <button md-button router-active [routerLink]=" ['Signup'] ">
+            Sign Up
           </button>
           <button md-button router-active [routerLink]=" ['Summoner'] ">
             Summoner
@@ -86,6 +91,8 @@ import {Recipes} from './recipes/recipes.component';
 })
 @RouteConfig([
   { path: '/', name: 'Index', component: Home, useAsDefault: true },
+  { path: '/signin',  name: 'Signin',  component: Signin },
+  { path: '/signup',  name: 'Signup',  component: Signup },
   { path: '/home',  name: 'Home',  component: Home },
   { path: '/summoner', component: Summoner, name: 'Summoner' },
   { path: '/redux', component: Recipes, name: 'Recipes' },
