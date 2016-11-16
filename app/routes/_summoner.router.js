@@ -55,7 +55,14 @@ export default(app, router) => {
       console.log(summoners, " summoners inside api call");
       // res.json(summoners);
     })
-    Summoner.find(
+
+    Summoner.find((err, summoners) => {
+      if (err)
+        res.send(err);
+
+      console.log(summoners, "summoners outside sent back");
+      res.json(summoners);
+    });
   })
 
   // ### Get all of the summoner items
