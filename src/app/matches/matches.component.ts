@@ -4,7 +4,7 @@
 /*
  * Angular 2 decorators and services
  */
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
 
 import {MatchesService} from './matches.service';
 import {HTTP_PROVIDERS} from '@angular/http';
@@ -17,7 +17,7 @@ import {HTTP_PROVIDERS} from '@angular/http';
   // Every Angular template is first compiled by the browser before Angular runs it's compiler
   template: require('./matches.component.html'),
   // Load our main `Sass` file into our `Matches` component
-  providers: [...HTTP_PROVIDERS,MatchesService],
+  providers: [...HTTP_PROVIDERS, MatchesService],
   directives: [],
   pipes: []
 })

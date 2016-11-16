@@ -18,6 +18,11 @@
 // Load the `Matches` model
 import Matches from '../models/matches.model';
 
+import * as leaguetn from 'league-typenode';
+
+var tn: leaguetb.LeagueTypenode = new leaguetn.LeagueTypenode('RGAPI-19efd6ff-0624-46a1-b90c-f491801608d0', false);
+
+
 export default (app, router) => {
 
   // ### Matches API Routes
@@ -26,123 +31,124 @@ export default (app, router) => {
 
   router.route('/matches')
 
-    // ### Create a Matches item
+  // ### Create a Matches item
 
-    // Accessed at POST http://localhost:8080/api/matches
+  // Accessed at POST http://localhost:8080/api/matches
 
-    // Create a Matches item
-    .post((req, res) => {
+  // Create a Matches item
+  .post((req, res) => {
+    // {matchId:req.params.matchId }
+    var matchId = 2054994283;
 
-      Matches.create({
 
-        text : req.body.text
+        tn.getMatchesBySummonerId('na', matchId, false, (err, match) => {
+          if (err) {
+            res.send(err)
+          }
+          console.log("This is not the match you are looking for", match);
+          Matches.create(match, (err, matches) => {
+            if (err)
+              res.send(err);
+            // DEBUG
+            console.log(`Matches created: ${matches}`);
+              res.json(matches);
+          });
+        })
 
-      }, (err, matches) => {
-
-        if (err)
-          res.send(err);
-
-        // DEBUG
-        console.log(`Matches created: ${matches}`);
-
-        Matches.find((err, matchess) => {
-          if(err)
-            res.send(err);
-
-          res.json(matchess);
-        });
-      });
     })
 
-    // ### Get all of the Matches items
 
-    // Accessed at GET http://localhost:8080/api/matches
-    .get((req, res) => {
+  })
 
-      // Use mongoose to get all Matches items in the database
-      Matches.find((err, matches) => {
+  // ### Get all of the Matches items
 
-        if(err)
-          res.send(err);
+  // Accessed at GET http://localhost:8080/api/matches
+  .get((req, res) => {
 
-        else
-          res.json(matches);
-      });
+    // Use mongoose to get all Matches items in the database
+    Matches.find((err, matches) => {
+
+      if (err)
+        res.send(err);
+
+      else
+        res.json(matches);
     });
+  });
 
   router.route('/matches/:matches_id')
 
-    // ### Get a Matches item by ID
+  // ### Get a Matches item by ID
 
-    // Accessed at GET http://localhost:8080/api/matches/:matches_id
-    .get((req, res) => {
+  // Accessed at GET http://localhost:8080/api/matches/:matches_id
+  .get((req, res) => {
 
-      // Use mongoose to a single Matches item by id in the database
-      Matches.findOne(req.params.camelized_id, (err, matches) => {
+    // Use mongoose to a single Matches item by id in the database
+    Matches.findOne(req.params.camelized_id, (err, matches) => {
 
-        if(err)
-          res.send(err);
+      if (err)
+        res.send(err);
 
-        else
-          res.json(matches);
-      });
-    })
+      else
+        res.json(matches);
+    });
+  })
 
-    // ### Update a Matches item by ID
+  // ### Update a Matches item by ID
 
-    // Accessed at PUT http://localhost:8080/api/matches/:matches_id
-    .put((req, res) => {
+  // Accessed at PUT http://localhost:8080/api/matches/:matches_id
+  .put((req, res) => {
 
-      // use our Matches model to find the Matches item we want
-      Matches.findOne({
+    // use our Matches model to find the Matches item we want
+    Matches.findOne({
 
-        '_id' : req.params.matches_id
+      '_id': req.params.matches_id
 
-      }, (err, matches) => {
+    }, (err, matches) => {
+
+      if (err)
+        res.send(err);
+
+      // Only update a field if a new value has been passed in
+      if (req.body.text)
+        matches.text = req.body.text;
+
+      // save the Matches item
+      return matches.save((err) => {
 
         if (err)
           res.send(err);
 
-        // Only update a field if a new value has been passed in
-        if (req.body.text)
-          matches.text = req.body.text;
+        return res.send(matches);
 
-        // save the Matches item
-        return matches.save((err) => {
-
-          if (err)
-            res.send(err);
-
-          return res.send(matches);
-
-        });
-      });
-    })
-
-    // ### Delete a Matches item by ID
-
-    // Accessed at DELETE http://localhost:8080/api/matches/:matches_id
-    .delete((req, res) => {
-
-      // DEBUG
-      console.log(`Attempting to delete matches with id: ${req.params.matches_id}`);
-
-      Matches.remove({
-
-        _id : req.params.matches_id
-      }, (err, matches) => {
-
-        if(err)
-          res.send(err);
-
-        console.log('Matches successfully deleted!');
-
-        Matches.find((err, matchess) => {
-          if(err)
-            res.send(err);
-
-          res.json(matchess);
-        });
       });
     });
+  })
+
+  // ### Delete a Matches item by ID
+
+  // Accessed at DELETE http://localhost:8080/api/matches/:matches_id
+  .delete((req, res) => {
+
+    // DEBUG
+    console.log(`Attempting to delete matches with id: ${req.params.matches_id}`);
+
+    Matches.remove({
+
+      _id: req.params.matches_id
+    }, (err, matches) => {
+
+      if (err)
+        res.send(err);
+
+      console.log('Matches successfully deleted!');
+
+      Matches.find((err, matchess) => {
+        if (err)
+          res.send(err);
+
+        res.json(matchess);
+      });
+    });
+  });
 };

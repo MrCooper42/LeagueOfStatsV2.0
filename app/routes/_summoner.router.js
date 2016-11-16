@@ -55,7 +55,7 @@ export default(app, router) => {
       console.log(summoners, " summoners inside api call");
       // res.json(summoners);
     })
-    Summoner.find(
+    
   })
 
   // ### Get all of the summoner items

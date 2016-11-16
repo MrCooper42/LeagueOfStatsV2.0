@@ -27,6 +27,8 @@ import {NgFor} from '@angular/common';
 
 // Import Summoner component
 import {Summoner} from './summoner/summoner.component';
+// Import Matches component
+import {Matches} from './matches/matches.component';
 
 // Import SummonerD3 component
 import {SummonerD3} from './summoner/summonerD3.component';
@@ -62,6 +64,9 @@ import {Recipes} from './recipes/recipes.component';
           <button md-button router-active [routerLink]=" ['Summoner'] ">
             Summoner
           </button>
+          <button md-button router-active [routerLink]=" ['Matches'] ">
+            Matches
+          </button>
           <button md-button router-active [routerLink]=" ['Recipes'] ">
             Recipes
           </button>
@@ -88,6 +93,7 @@ import {Recipes} from './recipes/recipes.component';
   { path: '/', name: 'Index', component: Home, useAsDefault: true },
   { path: '/home',  name: 'Home',  component: Home },
   { path: '/summoner', component: Summoner, name: 'Summoner' },
+  { path: '/matches', component: Matches, name: 'Matches' },
   { path: '/redux', component: Recipes, name: 'Recipes' },
   // Async load a component using Webpack's require with
   // es6-promise-loader and webpack `require`
