@@ -27,9 +27,11 @@ export default(app, router) => {
     Summoner.find({
       text: req.body.text
     }, (err, summoners) => {
-      console.log(summoners, "summoners avaliable??????");
+      console.log(req.body.text, "summoners ??????");
+      console.log(summoners.text.length, "!summoners text");
       if (!summoners.text) {
         tn.getSummonerByNames("na", req.body.text, (err, summoner) => {
+          console.log(summoner, "summoner");
           if (err) {
             res.send(err)
           }
@@ -46,16 +48,17 @@ export default(app, router) => {
             console.log(`Summoner created: ${summoner}`);
 
           });
+          console.log(summoner, "summoner before send json");
         })
+      } else {
+        console.log(summoners, "summoners at end?");
+        // res.json()
       }
-
-      if (err)
-        res.send(err);
-
-      console.log(summoners, " summoners inside api call");
-      // res.json(summoners);
     })
 
+    // console.log(summoners, " summoners outside api call");
+    // res.json(summoners);
+    // else
     Summoner.find((err, summoners) => {
       if (err)
         res.send(err);
