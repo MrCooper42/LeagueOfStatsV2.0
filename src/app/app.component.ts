@@ -27,6 +27,7 @@ import {NgFor} from '@angular/common';
 
 // Import Summoner component
 import {Summoner} from './summoner/summoner.component';
+
 // Import Matches component
 import {Matches} from './matches/matches.component';
 
