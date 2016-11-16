@@ -1,10 +1,3 @@
-// ```
-// _matches.route.js
-// (c) 2016 David Newman
-// david.r.niciforovic@gmail.com
-// _matches.route.js may be freely distributed under the MIT license
-// ```
-
 // */app/routes/matches/_matches.router.js*
 
 // ## Matches API object
@@ -20,10 +13,9 @@ import Matches from '../models/matches.model';
 
 import * as leaguetn from 'league-typenode';
 
-var tn: leaguetb.LeagueTypenode = new leaguetn.LeagueTypenode('RGAPI-19efd6ff-0624-46a1-b90c-f491801608d0', false);
+var tn : leaguetb.LeagueTypenode = new leaguetn.LeagueTypenode('RGAPI-19efd6ff-0624-46a1-b90c-f491801608d0', false);
 
-
-export default (app, router) => {
+export default(app, router) => {
 
   // ### Matches API Routes
 
@@ -36,43 +28,40 @@ export default (app, router) => {
   // Accessed at POST http://localhost:8080/api/matches
 
   // Create a Matches item
-  .post((req, res) => {
+    .post((req, res) => {
     // {matchId:req.params.matchId }
     var matchId = 2054994283;
 
+    tn.getMatchesBySummonerId('na', matchId, false, (err, match) => {
+      if (err) {
+        res.send(err)
+      }
+      console.log("This is not the match you are looking for", match);
+      Matches.create(match, (err, matches) => {
+        if (err)
+          res.send(err);
 
-        tn.getMatchesBySummonerId('na', matchId, false, (err, match) => {
-          if (err) {
-            res.send(err)
-          }
-          console.log("This is not the match you are looking for", match);
-          Matches.create(match, (err, matches) => {
-            if (err)
-              res.send(err);
-            // DEBUG
-            console.log(`Matches created: ${matches}`);
-              res.json(matches);
-          });
-        })
-
+        // DEBUG
+        console.log(`Matches created: ${matches}`);
+        res.json(matches);
+      });
     })
-
 
   })
 
   // ### Get all of the Matches items
 
   // Accessed at GET http://localhost:8080/api/matches
-  .get((req, res) => {
+    .get((req, res) => {
 
     // Use mongoose to get all Matches items in the database
     Matches.find((err, matches) => {
 
-      if (err)
+      if (err) {
         res.send(err);
-
-      else
+      } else {
         res.json(matches);
+      }
     });
   });
 
@@ -81,7 +70,7 @@ export default (app, router) => {
   // ### Get a Matches item by ID
 
   // Accessed at GET http://localhost:8080/api/matches/:matches_id
-  .get((req, res) => {
+    .get((req, res) => {
 
     // Use mongoose to a single Matches item by id in the database
     Matches.findOne(req.params.camelized_id, (err, matches) => {
@@ -89,15 +78,16 @@ export default (app, router) => {
       if (err)
         res.send(err);
 
-      else
+else
         res.json(matches);
-    });
+      }
+    );
   })
 
   // ### Update a Matches item by ID
 
   // Accessed at PUT http://localhost:8080/api/matches/:matches_id
-  .put((req, res) => {
+    .put((req, res) => {
 
     // use our Matches model to find the Matches item we want
     Matches.findOne({
@@ -128,7 +118,7 @@ export default (app, router) => {
   // ### Delete a Matches item by ID
 
   // Accessed at DELETE http://localhost:8080/api/matches/:matches_id
-  .delete((req, res) => {
+    .delete((req, res) => {
 
     // DEBUG
     console.log(`Attempting to delete matches with id: ${req.params.matches_id}`);
