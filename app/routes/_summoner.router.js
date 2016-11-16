@@ -22,41 +22,48 @@ export default(app, router) => {
   // Accessed at POST http://localhost:8080/api/summoner
 
   // Create a summoner item
-    .post((req, res) => {
+    .post((req, res, next) => {
 
-    Summoner.find({
-      text: req.body.text
-    }, (err, summoners) => {
-      console.log(summoners, "summoners avaliable??????");
-      if (!summoners.text) {
+    var query = Summoner.find({text: req.body.text})
+    console.log(query, "query");
+    query.exec((err,summoned) => {
+      if (!summoned.length) { //there is no user
         tn.getSummonerByNames("na", req.body.text, (err, summoner) => {
           if (err) {
             res.send(err)
           }
           Summoner.create({
             text: req.body.text,
-            id: summoners.id,
-            profileIconId: 1211
+            id: summoner.id,
+            profileIconId: summoner.profileIconId
           }, (err, summoner) => {
-
-            if (err)
+            if (err) {
               res.send(err);
-
-            // DEBUG
+            }
             console.log(`Summoner created: ${summoner}`);
 
+            Summoner.find((err, summoners) => {
+              if (err) {
+                res.send(err);
+              }
+              console.log(summoners, "summoners outside sent back");
+              res.json(summoners);
+            })
+            // query.exec()
+            // DEBUG
           });
         })
+      } else {
+        Summoner.find((err, summoners) => {
+          if (err) {
+            res.send(err);
+          }
+          console.log(summoners, "summoners outside sent back");
+          res.json(summoners);
+        })
       }
-
-      if (err)
-        res.send(err);
-
-      console.log(summoners, " summoners inside api call");
-      // res.json(summoners);
-    })
-    
   })
+
 
   // ### Get all of the summoner items
 
