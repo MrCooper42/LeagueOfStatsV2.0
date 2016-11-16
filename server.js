@@ -1,10 +1,3 @@
-// ```
-// server.js
-// (c) 2016 David Newman
-// david.r.niciforovic@gmail.com
-// server.js may be freely distributed under the MIT license
-// ```
-
 // *server.js*
 
 // Require babel hook included to load all subsequent files required by node
