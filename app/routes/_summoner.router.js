@@ -24,38 +24,38 @@ export default(app, router) => {
   // Create a summoner item
     .post((req, res) => {
 
-    Summoner.find((err, summoners) => {
-      console.log(summoners, "summoners");
-      summoners.forEach((summoner) => {
-        if (req.body.text == summoner.text) {
-          res.end()
-        }
-      })
-      tn.getSummonerByNames("na", req.body.text, (err, summoners) => {
-        if (err) {
-          res.send(err)
-        }
-        Summoner.create({
-          text: req.body.text,
-          id: summoners.id,
-          profileIconId: 1211
-        }, (err, summoner) => {
+    Summoner.find({
+      text: req.body.text
+    }, (err, summoners) => {
+      console.log(summoners, "summoners avaliable??????");
+      if (!summoners.text) {
+        tn.getSummonerByNames("na", req.body.text, (err, summoner) => {
+          if (err) {
+            res.send(err)
+          }
+          Summoner.create({
+            text: req.body.text,
+            id: summoners.id,
+            profileIconId: 1211
+          }, (err, summoner) => {
 
-          if (err)
-            res.send(err);
+            if (err)
+              res.send(err);
 
-          // DEBUG
-          console.log(`Summoner created: ${summoner}`);
-        });
-      })
+            // DEBUG
+            console.log(`Summoner created: ${summoner}`);
 
-      Summoner.find((err, summoners) => {
-        if (err)
-          res.send(err);
+          });
+        })
+      }
 
-        res.json(summoners);
-      });
+      if (err)
+        res.send(err);
+
+      console.log(summoners, " summoners inside api call");
+      // res.json(summoners);
     })
+    Summoner.find(
   })
 
   // ### Get all of the summoner items
