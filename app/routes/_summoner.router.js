@@ -22,51 +22,61 @@ export default(app, router) => {
   // Accessed at POST http://localhost:8080/api/summoner
 
   // Create a summoner item
-    .post((req, res) => {
+    .post((req, res, next) => {
 
-    Summoner.find({
-      text: req.body.text
-    }, (err, summoners) => {
-      console.log(req.body.text, "summoners ??????");
-      console.log(summoners.text.length, "!summoners text");
-      if (!summoners.text) {
+    var query = Summoner.find({text: req.body.text})
+    console.log(query, "query");
+    query.exec((err,summoned) => {
+      if (!summoned.length) { //there is no user
         tn.getSummonerByNames("na", req.body.text, (err, summoner) => {
-          console.log(summoner, "summoner");
           if (err) {
             res.send(err)
           }
           Summoner.create({
             text: req.body.text,
-            id: summoners.id,
-            profileIconId: 1211
+            id: summoner.id,
+            profileIconId: summoner.profileIconId
           }, (err, summoner) => {
-
-            if (err)
+            if (err) {
               res.send(err);
-
-            // DEBUG
+            }
             console.log(`Summoner created: ${summoner}`);
 
+            Summoner.find((err, summoners) => {
+              if (err) {
+                res.send(err);
+              }
+              console.log(summoners, "summoners outside sent back");
+              res.json(summoners);
+            })
+            // query.exec()
+            // DEBUG
           });
-          console.log(summoner, "summoner before send json");
         })
       } else {
-        console.log(summoners, "summoners at end?");
-        // res.json()
+        Summoner.find((err, summoners) => {
+          if (err) {
+            res.send(err);
+          }
+          console.log(summoners, "summoners outside sent back");
+          res.json(summoners);
+        })
       }
-    })
-
-    // console.log(summoners, " summoners outside api call");
-    // res.json(summoners);
-    // else
-    Summoner.find((err, summoners) => {
-      if (err)
-        res.send(err);
-
-      console.log(summoners, "summoners outside sent back");
-      res.json(summoners);
-    });
+    }).then(console.log("i hit the then"))
   })
+  // console.log("skpping to next find")
+  //
+  // }).exec().then(() => {
+  //   Summoner.find((err, summoners) => {
+  //     if (err) {
+  //       res.send(err);
+  //     }
+  //     console.log(summoners, "summoners outside sent back");
+  //     res.json(summoners);
+  //   })
+  // }).catch((err) => console.log(err, "error at .catch"))
+
+  // var promise = query.exec()
 
   // ### Get all of the summoner items
 
