@@ -5,10 +5,3 @@ require("babel-register");
 
 // Load gulp configuration
 var conf = require('./config/gulpfile.conf.js');
-
-// ```
-// gulpfile.js
-// (c) 2016 David Newman
-// david.r.niciforovic@gmail.com
-// gulpfile.js may be freely distributed under the MIT license
-// ```
