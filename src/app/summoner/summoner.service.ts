@@ -22,8 +22,8 @@ export class SummonerService {
           .map(res => res.json());
   }
 
-  createSummoner(data) {
 
+  createSummoner(data) {
     let headers = new Headers();
 
     headers.append('Content-Type', 'application/json');
@@ -32,6 +32,7 @@ export class SummonerService {
           {headers: headers})
         .map(res => res.json());
   }
+
 
   summonerStats(data) {
     let headers = new Headers();
@@ -43,9 +44,21 @@ export class SummonerService {
         .map(res => res.json());
   }
 
-  deleteSummoner(id) {
+  getSummoner(id){
+    return this.http.get(`/api/summoner/${id}`)
+        .map(res => res.json());
 
+  }
+
+  deleteSummoner(id) {
       return this.http.delete(`/api/summoner/${id}`)
           .map(res => res.json());
+  }
+
+  updateMatchList(id) {
+    let headers = new Headers();
+    return this.http.put(`/api/summoner/${id}`,id,
+          {headers: headers})
+        .map(res => res.json());
   }
 }

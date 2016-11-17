@@ -7,6 +7,7 @@
 import {Component} from '@angular/core';
 
 import {MatchesService} from './matches.service';
+
 import {HTTP_PROVIDERS} from '@angular/http';
 /*
  * Matches
@@ -23,7 +24,6 @@ export class Matches {
   matchData = {matchId:2054994283};
 
   private matches: Array<Matches> = [];
-
   constructor(public matchesService: MatchesService) {
     matchesService.getAll()
       .subscribe((res)=>{
