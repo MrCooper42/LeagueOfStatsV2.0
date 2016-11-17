@@ -4,13 +4,13 @@ import {Http, Headers} from '@angular/http';
 @Injectable()
 export class SignupService {
   //
-  // constructor(public http: Http) { }
+  constructor(public http: Http) { }
   //
   //
-  // getAll() {
-  //   return this.http.get('/api/matches')
-  //     .map(res => res.json());
-  // }
+  authenticate() {
+    return this.http.get('/auth/signup')
+      .map(res => res.json());
+  }
   // createMatch(data) {
   //   let headers = new Headers();
   //
