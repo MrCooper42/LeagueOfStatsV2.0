@@ -25,17 +25,18 @@ export default(app, router) => {
     .post((req, res, next) => {
 
     var query = Summoner.find({text: req.body.text})
-    console.log(query, "query");
     query.exec((err,summoned) => {
       if (!summoned.length) { //there is no user
-        tn.getSummonerByNames("na", req.body.text, (err, summoner) => {
+        let sumName = req.body.text.replace(' ', '').toLowerCase().trim();
+        tn.getSummonerByNames("na", sumName, (err, json) => {
           if (err) {
             res.send(err)
           }
+          console.log(json, json[sumName].name, json[sumName].id, "full, name, id");
           Summoner.create({
             text: req.body.text,
-            id: summoner.id,
-            profileIconId: summoner.profileIconId
+            id: json[sumName].id,
+            profileIconId: json[sumName].profileIconId
           }, (err, summoner) => {
             if (err) {
               res.send(err);
@@ -64,19 +65,6 @@ export default(app, router) => {
       }
     }).then(console.log("i hit the then"))
   })
-  // console.log("skpping to next find")
-  //
-  // }).exec().then(() => {
-  //   Summoner.find((err, summoners) => {
-  //     if (err) {
-  //       res.send(err);
-  //     }
-  //     console.log(summoners, "summoners outside sent back");
-  //     res.json(summoners);
-  //   })
-  // }).catch((err) => console.log(err, "error at .catch"))
-
-  // var promise = query.exec()
 
   // ### Get all of the summoner items
 
