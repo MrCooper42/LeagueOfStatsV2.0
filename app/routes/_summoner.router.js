@@ -25,11 +25,11 @@ export default(app, router) => {
     .post((req, res, next) => {
       console.log(req.body.text, "body");
     let query = Summoner.find({text: req.body.text})
+    let sumName = req.body.text.replace(' ', '').toLowerCase().trim();
 
     query.exec((err, summoned) => {
       console.log(!summoned.length, "is there a summoner?");
       if (!summoned.length) { //there is no user
-        let sumName = req.body.text.replace(' ', '').toLowerCase().trim();
         tn.getSummonerByNames("na", sumName, (err, json) => {
           if (err) {
             res.send(err)
