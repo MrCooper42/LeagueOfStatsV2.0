@@ -25,6 +25,9 @@ import {Home} from './home';
 // Import NgFor directive
 import {NgFor} from '@angular/common';
 
+// Import Login component
+import {Login} from './login/login.component';
+
 // Import Summoner component
 import {Summoner} from './summoner/summoner.component';
 
@@ -56,8 +59,8 @@ import {Recipes} from './recipes/recipes.component';
       <md-toolbar color="primary">
           <span>{{ name }}</span>
           <span class="fill"></span>
-          <button md-button router-active [routerLink]=" ['Index'] ">
-            Index
+          <button md-button router-active [routerLink]=" ['Login'] ">
+            Login
           </button>
           <button md-button router-active [routerLink]=" ['Home'] ">
             Home
@@ -93,6 +96,7 @@ import {Recipes} from './recipes/recipes.component';
 @RouteConfig([
   { path: '/', name: 'Index', component: Home, useAsDefault: true },
   { path: '/home',  name: 'Home',  component: Home },
+  { path: '/login', component: Login, name: 'Login' },
   { path: '/summoner', component: Summoner, name: 'Summoner' },
   { path: '/matches', component: Matches, name: 'Matches' },
   { path: '/redux', component: Recipes, name: 'Recipes' },
