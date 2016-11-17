@@ -18,12 +18,10 @@ export default(app, router) => {
   // Create a Stats item
     .post((req, res) => {
 
-    let query = Stats.find({
-      summonerId: req.body.id
-    })
+    let query = Stats.find({summonerId: req.body.id})
 
     query.exec((err, summoned) => {
-			console.log(summoned, summoned.length, "summ summLen");
+      console.log(summoned, summoned.length, "summ summLen");
       console.log(summoned, "query exec summoned");
       if (!summoned.length) { //never been queried
         let sumID = req.body.id
@@ -49,7 +47,9 @@ export default(app, router) => {
           });
         })
       } else {
-        Stats.find((err, stats) => {
+        Stats.find({
+          summonerId: req.body.id
+        }, (err, stats) => {
           if (err) {
             res.send(err);
           }

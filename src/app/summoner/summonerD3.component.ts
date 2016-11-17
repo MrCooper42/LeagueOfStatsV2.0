@@ -15,7 +15,7 @@ import {Summoner} from './summoner.component';
 
 @Component({
   // HTML tag for specifying this component
-  selector: 'summoner',
+  selector: 'summonerD3',
   // Let Angular 2 know about `Http` and `SummonerService`
   providers: [...HTTP_PROVIDERS, SummonerService],
   template: require('./summoner.html')
@@ -23,7 +23,9 @@ import {Summoner} from './summoner.component';
 
 export class SummonerD3 {
 
-  private summoners: Array<Summoner> = [];
+  stats = {}
+
+  private summoners: Array<SummonerD3> = [];
 
   constructor(public summonerService: SummonerService) {
     console.log('Summoner d3 constructor go!');
@@ -38,4 +40,17 @@ export class SummonerD3 {
         // Reset `summoner` input
       });
   }
+
+    summonerStats(data) {
+      console.log(data, "data from component summstats")
+        this.summonerService.summonerStats(data)
+          .subscribe((res) => {
+
+              // Populate our `summoner` array with the `response` data
+              this.stats = res;
+              // Reset `summoner` input
+              // this.stats = {};
+          });
+    }
+
 }

@@ -1,5 +1,5 @@
 <div class="container">
-<div></div>
+  <div></div>
   <!-- FORM TO CREATE SUMMONers -->
   <div id="summoner-form" class="row">
     <div class="col-sm-8 col-sm-offset-2 text-center">
@@ -29,17 +29,18 @@
 
       <!-- LOOP OVER THE SUMMONers IN $scope.summoners -->
       <span>
-      <div class="checkbox" *ngFor="let summoner of summoners">
-        <label>
-          <input type="checkbox" (click)="deleteSummoner(summoner._id)" bind-checked="false">
-          {{ summoner.text }}
-        </label>
-        <label>
-          <input type="checkbox" (click)="summonerStats(summoner)" bind-checked="false">
-          {{ summoner.id }}
-        </label>
-      </div>
-    </span>
+        <div class="checkbox" *ngFor="let summoner of summoners">
+          <label>
+            <input type="checkbox" (click)="deleteSummoner(summoner._id)" bind-checked="false">
+            {{ summoner.text }}
+          </label>
+          <label>
+            <input type="checkbox" (click)="summonerStats(summoner)" bind-checked="false">
+            {{ summoner.id }}
+          </label>
+          <h5>{{ stats }}</h5>
+        </div>
+      </span>
 
     </div>
   </div>
