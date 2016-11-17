@@ -28,8 +28,13 @@
     <div class="col-sm-4 col-sm-offset-4">
 
       <!-- LOOP OVER THE SUMMONers IN $scope.summoners -->
+<<<<<<< HEAD
       <span *ngFor="let summoner of summoners">
         <div class="checkbox" >
+=======
+      <span>
+        <div class="checkbox" *ngFor="let summoner of summoners">
+>>>>>>> 7e7db954824d1f2292dfba13277339d657ef5904
           <label>
             <input type="checkbox" (click)="deleteSummoner(summoner._id)" bind-checked="false">
             {{ summoner.text }}
@@ -38,6 +43,7 @@
             <input type="checkbox" (click)="summonerStats(summoner)" bind-checked="false">
             {{ summoner.id }}
           </label>
+<<<<<<< HEAD
           <h5>{{ stats.playerSummonerId }}</h5>
         </div>
         <div *ngIf="stats.playerSummonerId == summoner.id" *ngFor="let stat of stats; trackBy: trackByStats">
@@ -60,6 +66,12 @@
         </div>
       </span>
       <nvd></nvd>
+=======
+          <h5>{{ stats }}</h5>
+        </div>
+      </span>
+
+>>>>>>> 7e7db954824d1f2292dfba13277339d657ef5904
     </div>
   </div>
 </div>
