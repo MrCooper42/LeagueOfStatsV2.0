@@ -28,14 +28,16 @@ export default(app, router) => {
 
     query.exec((err, summoned) => {
       if (!summoned.length) { //there is no user
-        tn.getSummonerByNames("na", req.body.text, (err, summoner) => {
+        let sumName = req.body.text.replace(' ', '').toLowerCase().trim();
+        tn.getSummonerByNames("na", sumName, (err, json) => {
           if (err) {
             res.send(err)
           }
+          console.log(json, json[sumName].name, json[sumName].id, "full, name, id");
           Summoner.create({
             text: req.body.text,
-            id: summoner.id,
-            profileIconId: summoner.profileIconId
+            id: json[sumName].id,
+            profileIconId: json[sumName].profileIconId
           }, (err, summoner) => {
             if (err) {
               res.send(err);
