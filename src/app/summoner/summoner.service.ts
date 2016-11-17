@@ -39,6 +39,17 @@ export class SummonerService {
         .map(res => res.json());
   }
 
+  summonerStats(data) {
+
+    let headers = new Headers();
+
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.post('/api/stats/:id', JSON.stringify(data),
+          {headers: headers})
+        .map(res => res.json());
+  }
+
   deleteSummoner(id) {
 
       return this.http.delete(`/api/summoner/${id}`)
