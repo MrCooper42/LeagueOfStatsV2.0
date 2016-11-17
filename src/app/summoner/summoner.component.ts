@@ -28,6 +28,7 @@ export class Summoner {
 
 
   private summoners: Array<Summoner> = [];
+  private matchList: Array<Summoner> = [];
 
   constructor(public summonerService: SummonerService) {
     console.log('Summoner constructor go!');
@@ -67,11 +68,12 @@ export class Summoner {
   }
 
   updateMatchList(id){
+    console.log(id,'component id')
     this.summonerService.updateMatchList(id)
       .subscribe((res) => {
 
           // Populate our `summoner` array with the `response` data
-          this.summoners = res;
+          this.matchList = res;
           // Reset `summoner` input
 
       });

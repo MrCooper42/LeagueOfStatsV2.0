@@ -7,6 +7,7 @@
 import {Component} from '@angular/core';
 
 import {MatchesService} from './matches.service';
+import {SummonerService} from '../summoner/summoner.service';
 import {HTTP_PROVIDERS} from '@angular/http';
 /*
  * Matches
@@ -23,13 +24,14 @@ export class Matches {
   matchData = {matchId:2054994283};
 
   private matches: Array<Matches> = [];
-
-  constructor(public matchesService: MatchesService) {
+  public matchIdList: Array<Matches> = []
+  constructor(public matchesService: MatchesService,public summonerService: SummonerService) {
     matchesService.getAll()
       .subscribe((res)=>{
         this.matches = res;
         // this.matchData = {};
       })
+    summonerService.
   }
 
   createMatch() {

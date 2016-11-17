@@ -92,45 +92,47 @@ export default (app, router) => {
   .get((req, res) => {
 
     // Use mongoose to a single summoner item by id in the database
-    Summoner.findOne(req.params.summoner_id, (err, summoner) => {
-
-      if (err)
-        res.send(err);
-
-      else
-        res.json(summoner);
-    });
+    // Summoner.findOne(req.params.summoner_id, (err, summoner) => {
+    //
+    //   if (err)
+    //     res.send(err);
+    //
+    //   else
+    //     res.json(summoner);
+    // });
   })
 
   // ### Update a summoner item by ID
 
   // Accessed at PUT http://localhost:8080/api/summoner/:summoner_id
   .put((req, res) => {
-    console.log(req.body,"req.body Boo");
-    var query = Summoner.find({
+    console.log(req.params,"req.body Boo");
+    var query = Summoner.findOne({
       _id: req.params.summoner_id
     })
 
     query.exec((err, summoned) => {
         var summonerMatchList = [];
         console.log(summoned, 'XXXXXXXXXXXXXXXXXXXXXXXXX');
-        if (summoned.length) {
-
-          tn.getMatchesBySummonerId("na", summoned.id, 'SEASON2016', (err, matchlist) => {
+        if (summoned) {
+          let id = summoned.id;
+          tn.getMatchesBySummonerId("na",id,null,null,'SEASON2016',null,null,null,null,function(err, data) {
             if (err) {
               res.send(err)
             }
-            for (var x = (matchlist.matches.length - 10); x < matchlist.matches.length; x++) {
-              console.log('matchlist.matches[x].matchId', matchlist.matches[x].matchId);
-              summonerMatchList.push(matchlist.matches[x].matchId)
+            console.log(data, " this is the matchlist you are looking for.");
+            for (var x = (data.matches.length - 10); x < data.matches.length; x++) {
+              console.log('matchlist.matches[x].matchId', data.matches[x].matchId);
+              summonerMatchList.push(data.matches[x].matchId)
             }
+            summoned.matchList = summonerMatchList
             console.log(summonerMatchList, "summonerMatchList baby");
-            return summoner.save((err) => {
+            return summoned.save((err) => {
 
               if (err)
                 res.send(err);
 
-              return res.json(summoner);
+              res.json(summoned);
 
             });
           })
@@ -188,7 +190,6 @@ export default (app, router) => {
     console.log(`Attempting to delete summoner with id: ${req.params.summoner_id}`);
 
     Summoner.remove({
-
       _id: req.params.summoner_id
     }, (err, summoner) => {
 
