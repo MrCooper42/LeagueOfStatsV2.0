@@ -25,7 +25,7 @@ export class Login implements OnInit {
   error = false;
   errorMessage = '';
 
-  constructor(private fb: FormBuilder, private authService: LoginService) {}
+  constructor(private fb: FormBuilder, private loginService: LoginService) {}
 
   onLogin() {
     this.authenticate.signinUser(this.myForm.value);
