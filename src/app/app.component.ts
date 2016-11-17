@@ -45,6 +45,7 @@ import {Recipes} from './recipes/recipes.component';
   selector: 'app',
   providers: [  ],
   directives: [ Summoner,
+                Matches,
                 NgFor,
                 RouterActive],
   encapsulation: ViewEncapsulation.None,
