@@ -4,7 +4,8 @@
 /*
  * Angular 2 decorators and services
  */
-import {Component} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 import {LoginService} from './login.service';
 import {HTTP_PROVIDERS} from '@angular/http';
@@ -22,30 +23,20 @@ import {HTTP_PROVIDERS} from '@angular/http';
   pipes: []
 })
 export class Login {
-  // matchData = {};
-  //
-  // private matches: Array<Matches> = [];
-  //
-  // constructor(public matchesService: MatchesService) {
-  //   matchesService.getAll()
-  //     .subscribe((res)=>{
-  //       this.matches = res;
-  //       this.matchData = {};
-  //     })
-  // }
-  //
-  // createMatch() {
-  //   this.matchesService.createMatch(this.matchData)
-  //     .subscribe((res)=>{
-  //       this.matches = res;
-  //       this.matchData = {};
-  //     })
-  // }
-  //
-  // deleteMatch(id) {
-  //   this.matchesService.deleteMatch(id)
-  //     .subscribe((res)=>{
-  //       this.matches = res;
-  //     })
-  // }
+  myForm: FormGroup;
+    error = false;
+    errorMessage = '';
+
+    constructor(private fb: FormBuilder, private authService: AuthService) {}
+
+    onSignin() {
+      this.authService.signinUser(this.myForm.value);
+    }
+
+    ngOnInit():any {
+        this.myForm = this.fb.group({
+            email: ['', Validators.required],
+            password: ['', Validators.required],
+        });
+    }
 }
