@@ -1,5 +1,4 @@
 import {Component, OnInit} from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/common";
 
 import { AuthService } from "./auth.service";
 
@@ -19,21 +18,6 @@ import { AuthService } from "./auth.service";
         </form>
     `
 })
-export class SigninComponent implements OnInit {
-    // myForm: FormGroup;
-    // error = false;
-    // errorMessage = '';
-    //
-    // constructor(private fb: FormBuilder, private authService: AuthService) {}
-    //
-    // onSignin() {
-    //   this.authService.signinUser(this.myForm.value);
-    // }
-    //
-    // ngOnInit():any {
-    //     this.myForm = this.fb.group({
-    //         email: ['', Validators.required],
-    //         password: ['', Validators.required],
-    //     });
-    // }
+export class SigninComponent {
+
 }
