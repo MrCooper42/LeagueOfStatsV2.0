@@ -7,7 +7,7 @@ import Summoner from '../models/summoner.model';
 
 import * as leaguetn from 'league-typenode';
 
-var tn : leaguetb.LeagueTypenode = new leaguetn.LeagueTypenode('RGAPI-19efd6ff-0624-46a1-b90c-f491801608d0', false);
+const tn : leaguetb.LeagueTypenode = new leaguetn.LeagueTypenode('RGAPI-19efd6ff-0624-46a1-b90c-f491801608d0', false);
 
 export default(app, router) => {
 
@@ -24,9 +24,9 @@ export default(app, router) => {
   // Create a summoner item
     .post((req, res, next) => {
 
-    var query = Summoner.find({text: req.body.text})
+    let query = Summoner.find({text: req.body.text})
 
-    query.exec((err,summoned) => {
+    query.exec((err, summoned) => {
       if (!summoned.length) { //there is no user
         let sumName = req.body.text.replace(' ', '').toLowerCase().trim();
         tn.getSummonerByNames("na", sumName, (err, json) => {

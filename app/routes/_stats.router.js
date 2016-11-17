@@ -4,6 +4,12 @@
 
 // Load the `Stats` model
 import Stats from '../models/stats.model';
+// Load the `Summoner` model
+import Summoner from '../models/summoner.model';
+
+import * as leaguetn from 'league-typenode';
+
+const tn: leaguetb.LeagueTypenode = new leaguetn.LeagueTypenode('RGAPI-19efd6ff-0624-46a1-b90c-f491801608d0', false);
 
 export default (app, router) => {
 
@@ -11,27 +17,46 @@ export default (app, router) => {
 
 	// Create a Stats item
 	.post((req, res) => {
+		console.log(req.body.id, "body");
 
-		Stats.create({
+		let query = Summoner.find({
+			id: req.body.id //change to Stats and id to summonerId
+		})
 
-			text: req.body.text
-
-		}, (err, stats) => {
-
-			if (err)
-				res.send(err);
-
-			// DEBUG
-			console.log(`Stats created: ${stats}`);
-
-			Stats.find((err, statss) => {
-				if (err)
-					res.send(err);
-
-				res.json(statss);
-			});
-		});
+		query.exec((err, summoned) => {
+			console.log(summoned, "query exec summoned");
+			if (summoned.length) { //never been queried add in ! again
+				let sumID = req.body.id
+				console.log(sumID, "sumID set");
+				tn.getSummaryBySummonerId("na", sumID, "SEASON2016", (err, json) => {
+					if (err) {
+						res.send(err)
+					}
+					console.log(Object.keys(json).length, "json returned from api call");
+				})
+			}
+		})
 	})
+
+	// Stats.create({
+	//
+	// 	text: req.body.text
+	//
+	// }, (err, stats) => {
+	//
+	// 	if (err)
+	// 		res.send(err);
+	//
+	// 	// DEBUG
+	// 	console.log(`Stats created: ${stats}`);
+	//
+	// 	Stats.find((err, statss) => {
+	// 		if (err)
+	// 			res.send(err);
+	//
+	// 		res.json(statss);
+	// 	});
+	// });
 
 	// ### Get all of the Stats items
 

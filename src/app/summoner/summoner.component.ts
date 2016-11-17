@@ -54,6 +54,19 @@ export class Summoner {
         });
   }
 
+
+  summonerStats(data) {
+    console.log(data, "data from component summstats")
+      this.summonerService.summonerStats(data)
+        .subscribe((res) => {
+
+            // Populate our `summoner` array with the `response` data
+            this.summoners = res;
+            // Reset `summoner` input
+            // this.summonerData.text = '';
+        });
+  }
+
   deleteSummoner(id) {
 
     this.summonerService.deleteSummoner(id)
