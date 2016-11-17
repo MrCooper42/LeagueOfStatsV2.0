@@ -26,7 +26,7 @@ export default(app, router) => {
 
     var query = Summoner.find({text: req.body.text})
 
-    query.exec((err, summoned) => {
+    query.exec((err,summoned) => {
       if (!summoned.length) { //there is no user
         let sumName = req.body.text.replace(' ', '').toLowerCase().trim();
         tn.getSummonerByNames("na", sumName, (err, json) => {
