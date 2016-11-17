@@ -4,6 +4,7 @@
 
 // Load the summoner model
 import Summoner from '../models/summoner.model';
+import Matches from '../models/match.model';
 
 import * as leaguetn from 'league-typenode';
 
@@ -84,13 +85,64 @@ export default (app, router) => {
     });
   });
 
+  router.route('/summoner/getOne')
+    .get((req,res,next)=>{
+      var query = Summoner.findOne({
+        text: req.body.text
+      })
+      var summonerMatchData = []
+      query.exec((err,summoned)=>{
+        console.log(summoned, 'is this the summoner you are looking for');
+        if (summoned){
+          for(let x = 0; x < summoned.matchList.length;x++){
+            tn.getMatchById('na',summoned.matchList[x] , false, (err, match)=>{
+              Matches.create(match, (err, matches) => {
+                if (err)
+                  res.send(err);
+                // DEBUG
+                console.log(`Matches created: ${matches}`);
+              });
+              summonerMatchData.push(match)
+            })
+          }
+          res.send(summonerMatchData)
+        }
+      })
+    })
+
+
+
+
+
   router.route('/summoner/:summoner_id')
 
   // ### Get a summoner item by ID
 
   // Accessed at GET http://localhost:8080/api/summoner/:summoner_id
   .get((req, res) => {
-
+    var query = Summoner.findOne({
+      _id: req.params.summoner_id
+    })
+    var summonerMatchData = []
+    query.exec((err,summoned)=>{
+      console.log(summoned, 'is this the summoner you are looking for');
+      if (summoned){
+        // for(let x = 0; x < summoned.matchList.length;x++){
+          tn.getMatchById('na',summoned.matchList[summoned.matchList.length-1] , false, (err, match)=>{
+            // Matches.create(match, (err, matches) => {
+            //   if (err)
+            //     res.send(err);
+            //   // DEBUG
+            //   console.log(`Matches created: ${matches}`);
+            // });
+            console.log('this is a match, its a little less scary',match);
+            // summonerMatchData.push(JSON.parse(match))
+            res.json(match)
+          })
+        // }
+        // console.log(summonerMatchData, "THIS IS GONNA BE PRETTY BIG and SCARY");
+      }
+    })
     // Use mongoose to a single summoner item by id in the database
     // Summoner.findOne(req.params.summoner_id, (err, summoner) => {
     //

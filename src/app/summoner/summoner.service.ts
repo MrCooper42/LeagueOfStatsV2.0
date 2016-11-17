@@ -28,6 +28,7 @@ export class SummonerService {
           .map(res => res.json());
   }
 
+
   createSummoner(data) {
     let headers = new Headers();
 
@@ -36,6 +37,12 @@ export class SummonerService {
     return this.http.post('/api/summoner', JSON.stringify(data),
           {headers: headers})
         .map(res => res.json());
+  }
+
+  getSummoner(id){
+    return this.http.get(`/api/summoner/${id}`)
+        .map(res => res.json());
+
   }
 
   deleteSummoner(id) {

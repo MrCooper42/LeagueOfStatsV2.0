@@ -18,6 +18,7 @@
           {{ summoner.text }}
         </label>
         <button type="submit" class="btn btn-primary btn-lg" (click)="updateMatchList(summoner._id)">Add Matches</button>
+        <button type="submit" class="btn btn-primary btn-lg" (click)="getSummoner(summoner._id)">Add MatchData</button>
       </div>
 
     </div>
@@ -37,5 +38,8 @@
         <button type="submit" class="btn btn-primary btn-lg" (click)="createSummoner()">Add</button>
       </form>
     </div>
+  </div>
+  <div *ngIf="matchData.length > 0" *ngFor="let match of matchData">
+    <h1>{{match.matchId}}</h1>
   </div>
 </div>
