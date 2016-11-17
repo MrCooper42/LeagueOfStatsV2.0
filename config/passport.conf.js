@@ -1,10 +1,3 @@
-// ```
-// passport.conf.js
-// (c) 2015 David Newman
-// david.r.niciforovic@gmail.com
-// passport.conf.js may be freely distributed under the MIT license
-// ```
-
 // *config/passport.conf.js*
 
 // This file contains the function which configures the PassportJS

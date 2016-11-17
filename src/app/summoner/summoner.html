@@ -28,8 +28,8 @@
     <div class="col-sm-4 col-sm-offset-4">
 
       <!-- LOOP OVER THE SUMMONers IN $scope.summoners -->
-      <span>
-        <div class="checkbox" *ngFor="let summoner of summoners">
+      <span *ngFor="let summoner of summoners">
+        <div class="checkbox" >
           <label>
             <input type="checkbox" (click)="deleteSummoner(summoner._id)" bind-checked="false">
             {{ summoner.text }}
@@ -38,10 +38,28 @@
             <input type="checkbox" (click)="summonerStats(summoner)" bind-checked="false">
             {{ summoner.id }}
           </label>
-          <h5>{{ stats }}</h5>
+          <h5>{{ stats.playerSummonerId }}</h5>
+        </div>
+        <div *ngIf="stats.playerSummonerId == summoner.id" *ngFor="let stat of stats; trackBy: trackByStats">
+          <h5>{{ stat.playerStatSummaryType }}</h5>
+          <ul>
+            <strong>Aggregated Stats</strong>
+            <li>Total Assists:
+              {{ stat.aggregatedStats.totalAssists }}</li>
+            <li>Total Champion Kills:
+              {{ stat.aggregatedStats.totalChampionKills }}</li>
+            <li>Total Minion Kills:
+              {{ stat.aggregatedStats.totalMinionKills }}</li>
+            <li>Total Neutral Minions Killed:
+              {{ stat.aggregatedStats.totalNeutralMinionsKilled }}</li>
+            <li>Total Turrets Killed:
+              {{ stat.aggregatedStats.totalTurretsKilled }}</li>
+          </ul>
+          <h5>Wins:
+            {{ stat.wins }}</h5>
         </div>
       </span>
-
+      <nvd></nvd>
     </div>
   </div>
 </div>

@@ -34,7 +34,6 @@ export class SummonerService {
   }
 
   summonerStats(data) {
-    console.log(data, "services stats data")
     let headers = new Headers();
 
     headers.append('Content-Type', 'application/json');

@@ -21,8 +21,6 @@ export default(app, router) => {
     let query = Stats.find({summonerId: req.body.id})
 
     query.exec((err, summoned) => {
-      console.log(summoned, summoned.length, "summ summLen");
-      console.log(summoned, "query exec summoned");
       if (!summoned.length) { //never been queried
         let sumID = req.body.id
         tn.getSummaryBySummonerId("na", sumID, "SEASON2016", (err, json) => {
@@ -41,7 +39,6 @@ export default(app, router) => {
               if (err) {
                 res.send(err);
               }
-              console.log(stats, "stats being created");
               res.json(stats);
             });
           });
@@ -53,7 +50,6 @@ export default(app, router) => {
           if (err) {
             res.send(err);
           }
-          console.log(stats, "stats being sent");
           res.json(stats);
         });
       }
