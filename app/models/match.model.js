@@ -5148,4 +5148,4 @@ let matchSchema = new mongoose.Schema({
   }]
 });
 
-export default mongoose.model('match',matchSchema);
+export default mongoose.model('Matches',matchSchema,'match');
