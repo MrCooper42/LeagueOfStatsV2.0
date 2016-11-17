@@ -33,7 +33,6 @@ export default(app, router) => {
           if (err) {
             res.send(err)
           }
-          console.log(json, json[sumName].name, json[sumName].id, "full, name, id");
           Summoner.create({
             text: req.body.text,
             id: json[sumName].id,

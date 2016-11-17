@@ -9,144 +9,147 @@ import Summoner from '../models/summoner.model';
 
 import * as leaguetn from 'league-typenode';
 
-const tn: leaguetb.LeagueTypenode = new leaguetn.LeagueTypenode('RGAPI-19efd6ff-0624-46a1-b90c-f491801608d0', false);
+const tn : leaguetb.LeagueTypenode = new leaguetn.LeagueTypenode('RGAPI-19efd6ff-0624-46a1-b90c-f491801608d0', false);
 
-export default (app, router) => {
+export default(app, router) => {
 
-	router.route('/stats')
+  router.route('/stats')
 
-	// Create a Stats item
-	.post((req, res) => {
-		console.log(req.body.id, "body");
+  // Create a Stats item
+    .post((req, res) => {
 
-		let query = Summoner.find({
-			id: req.body.id //change to Stats and id to summonerId
-		})
+    let query = Stats.find({
+      summonerId: req.body.id
+    })
 
-		query.exec((err, summoned) => {
-			console.log(summoned, "query exec summoned");
-			if (summoned.length) { //never been queried add in ! again
-				let sumID = req.body.id
-				console.log(sumID, "sumID set");
-				tn.getSummaryBySummonerId("na", sumID, "SEASON2016", (err, json) => {
-					if (err) {
-						res.send(err)
-					}
-					console.log(Object.keys(json).length, "json returned from api call");
-				})
-			}
-		})
-	})
+    query.exec((err, summoned) => {
+			console.log(summoned, summoned.length, "summ summLen");
+      console.log(summoned, "query exec summoned");
+      if (!summoned.length) { //never been queried
+        let sumID = req.body.id
+        tn.getSummaryBySummonerId("na", sumID, "SEASON2016", (err, json) => {
+          if (err) {
+            res.send(err)
+          }
+          Stats.create(json, (err, stats) => {
 
-	// Stats.create({
-	//
-	// 	text: req.body.text
-	//
-	// }, (err, stats) => {
-	//
-	// 	if (err)
-	// 		res.send(err);
-	//
-	// 	// DEBUG
-	// 	console.log(`Stats created: ${stats}`);
-	//
-	// 	Stats.find((err, statss) => {
-	// 		if (err)
-	// 			res.send(err);
-	//
-	// 		res.json(statss);
-	// 	});
-	// });
+            if (err) {
+              res.send(err);
+            }
 
-	// ### Get all of the Stats items
+            console.log(`Stats created: ${stats}`);
 
-	// Accessed at GET http://localhost:8080/api/stats
-	.get((req, res) => {
+            Stats.find((err, stats) => {
+              if (err) {
+                res.send(err);
+              }
+              console.log(stats, "stats being created");
+              res.json(stats);
+            });
+          });
+        })
+      } else {
+        Stats.find((err, stats) => {
+          if (err) {
+            res.send(err);
+          }
+          console.log(stats, "stats being sent");
+          res.json(stats);
+        });
+      }
+    })
+  })
 
-		// Use mongoose to get all Stats items in the database
-		Stats.find((err, stats) => {
+  // ### Get all of the Stats items
 
-			if (err)
-				res.send(err);
+  // Accessed at GET http://localhost:8080/api/stats
+    .get((req, res) => {
 
-			else
-				res.json(stats);
-		});
-	});
+    // Use mongoose to get all Stats items in the database
+    Stats.find((err, stats) => {
 
-	router.route('/stats/:stats_id')
+      if (err) {
+        res.send(err);
+      } else {
+        res.json(stats);
+      }
+    });
+  });
 
-	// ### Get a Stats item by ID
+  router.route('/stats/:stats_id')
 
-	// Accessed at GET http://localhost:8080/api/stats/:stats_id
-	.get((req, res) => {
+  // ### Get a Stats item by ID
 
-		// Use mongoose to a single Stats item by id in the database
-		Stats.findOne(req.params.camelized_id, (err, stats) => {
+  // Accessed at GET http://localhost:8080/api/stats/:stats_id
+    .get((req, res) => {
 
-			if (err)
-				res.send(err);
+    // Use mongoose to a single Stats item by id in the database
+    Stats.findOne(req.params.camelized_id, (err, stats) => {
 
-			else
-				res.json(stats);
-		});
-	})
+      if (err)
+        res.send(err);
 
-	// ### Update a Stats item by ID
+else
+        res.json(stats);
+      }
+    );
+  })
 
-	// Accessed at PUT http://localhost:8080/api/stats/:stats_id
-	.put((req, res) => {
+  // ### Update a Stats item by ID
 
-		// use our Stats model to find the Stats item we want
-		Stats.findOne({
+  // Accessed at PUT http://localhost:8080/api/stats/:stats_id
+    .put((req, res) => {
 
-			'_id': req.params.stats_id
+    // use our Stats model to find the Stats item we want
+    Stats.findOne({
 
-		}, (err, stats) => {
+      '_id': req.params.stats_id
 
-			if (err)
-				res.send(err);
+    }, (err, stats) => {
 
-			// Only update a field if a new value has been passed in
-			if (req.body.text)
-				stats.text = req.body.text;
+      if (err)
+        res.send(err);
 
-			// save the Stats item
-			return stats.save((err) => {
+      // Only update a field if a new value has been passed in
+      if (req.body.text)
+        stats.text = req.body.text;
 
-				if (err)
-					res.send(err);
+      // save the Stats item
+      return stats.save((err) => {
 
-				return res.send(stats);
+        if (err)
+          res.send(err);
 
-			});
-		});
-	})
+        return res.send(stats);
 
-	// ### Delete a Stats item by ID
+      });
+    });
+  })
 
-	// Accessed at DELETE http://localhost:8080/api/stats/:stats_id
-	.delete((req, res) => {
+  // ### Delete a Stats item by ID
 
-		// DEBUG
-		console.log(`Attempting to delete stats with id: ${req.params.stats_id}`);
+  // Accessed at DELETE http://localhost:8080/api/stats/:stats_id
+    .delete((req, res) => {
 
-		Stats.remove({
+    // DEBUG
+    console.log(`Attempting to delete stats with id: ${req.params.stats_id}`);
 
-			_id: req.params.stats_id
-		}, (err, stats) => {
+    Stats.remove({
 
-			if (err)
-				res.send(err);
+      _id: req.params.stats_id
+    }, (err, stats) => {
 
-			console.log('Stats successfully deleted!');
+      if (err)
+        res.send(err);
 
-			Stats.find((err, statss) => {
-				if (err)
-					res.send(err);
+      console.log('Stats successfully deleted!');
 
-				res.json(statss);
-			});
-		});
-	});
+      Stats.find((err, stats) => {
+        if (err)
+          res.send(err);
+
+        res.json(stats);
+      });
+    });
+  });
 };
