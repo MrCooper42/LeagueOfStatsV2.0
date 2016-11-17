@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 
 import {SummonerService} from './summoner.service';
 
-import {SummonerD3} from './summonerD3.component'
+// import {SummonerD3} from './summonerD3.component'
 
 // We `import` `http` into our `SummonerService` but we can only
 // specify providers within our component
@@ -18,7 +18,7 @@ import {NgFor} from '@angular/common';
     selector: 'summoner',
     // Let Angular 2 know about `Http` and `SummonerService`
     providers: [...HTTP_PROVIDERS, SummonerService],
-    directives :[SummonerD3],
+    directives :[],
     template: require('./summoner.html')
 })
 export class Summoner {
@@ -28,8 +28,19 @@ export class Summoner {
     text: '',
   };
 
+
   public stats: Array<Summoner> = [];
+
+  summonerName = {
+    text: ''
+  };
+
+
+
+
   private summoners: Array<Summoner> = [];
+  public matchData: Array<Summoner> = [];
+  private matchList: Array<Summoner> = [];
 
   constructor(public summonerService: SummonerService) {
     console.log('Summoner constructor go!');
@@ -58,6 +69,7 @@ export class Summoner {
   }
 
 
+
   summonerStats(data) {
       this.summonerService.summonerStats(data)
         .subscribe((res) => {
@@ -73,6 +85,17 @@ export class Summoner {
             }
             // Reset `summoner` input
         });
+      }
+  getSummoner(id){
+    this.summonerService.getSummoner(id)
+      .subscribe((res) => {
+
+          // Populate our `summoner` array with the `response` data
+          this.matchData.push(res);
+          // Reset `summoner` input
+          // this.summonerName.text = '';
+      })
+
   }
 
   deleteSummoner(id) {
@@ -82,6 +105,18 @@ export class Summoner {
 
           // Populate our `summoner` array with the `response` data
           this.summoners = res;
+      });
+  }
+
+  updateMatchList(id){
+    console.log(id,'component id')
+    this.summonerService.updateMatchList(id)
+      .subscribe((res) => {
+
+          // Populate our `summoner` array with the `response` data
+          this.matchList = res;
+          // Reset `summoner` input
+
       });
   }
 }

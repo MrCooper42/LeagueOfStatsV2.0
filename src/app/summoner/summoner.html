@@ -1,3 +1,4 @@
+
 <div class="container">
   <div></div>
   <!-- FORM TO CREATE SUMMONers -->
@@ -39,6 +40,8 @@
             {{ summoner.id }}
           </label>
           <h5>{{ stats.playerSummonerId }}</h5>
+          <button type="submit" class="btn btn-primary btn-lg" (click)="updateMatchList(summoner._id)">Add Matches</button>
+          <button type="submit" class="btn btn-primary btn-lg" (click)="getSummoner(summoner._id)">Add MatchData</button>
         </div>
         <div *ngIf="stats.playerSummonerId == summoner.id" *ngFor="let stat of stats; trackBy: trackByStats">
           <h5>{{ stat.playerStatSummaryType }}</h5>
@@ -59,7 +62,7 @@
             {{ stat.wins }}</h5>
         </div>
       </span>
-      <summonerD3></summonerD3>
+      <!-- <summonerD3></summonerD3> -->
     </div>
   </div>
 </div>
