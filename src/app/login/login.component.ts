@@ -5,7 +5,7 @@
  * Angular 2 decorators and services
  */
 import {Component, OnInit} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from "@angular/common";
+// import { FormBuilder, FormGroup, Validators } from "@angular/common";
 
 import {LoginService} from './login.service';
 import {HTTP_PROVIDERS} from '@angular/http';
