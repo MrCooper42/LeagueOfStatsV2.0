@@ -2,7 +2,10 @@ import {Component} from '@angular/core';
 
 import {SummonerService} from './summoner.service';
 
-// import {SummonerD3} from './summonerD3.component'
+import {nvD3} from 'ng2-nvd3'
+declare let d3: any;
+
+import {SummonerD3} from './summonerD3.component'
 
 // We `import` `http` into our `SummonerService` but we can only
 // specify providers within our component
@@ -18,7 +21,7 @@ import {NgFor} from '@angular/common';
     selector: 'summoner',
     // Let Angular 2 know about `Http` and `SummonerService`
     providers: [...HTTP_PROVIDERS, SummonerService],
-    directives :[],
+    directives :[SummonerD3],
     template: require('./summoner.html')
 })
 export class Summoner {

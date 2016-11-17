@@ -48,7 +48,6 @@ import {Recipes} from './recipes/recipes.component';
   providers: [  ],
   directives: [ Summoner,
                 SummonerD3,
-                nvD3,
                 Matches,
                 NgFor,
                 RouterActive],

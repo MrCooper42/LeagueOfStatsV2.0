@@ -10,7 +10,7 @@ export class SummonerD3 {
   options;
   data;
 
-  @ViewChild(summonerD3)
+  @ViewChild(nvD3)
   nvD3: nvD3;
 
   ngOnInit(){
