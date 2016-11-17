@@ -18,7 +18,7 @@ import {NgFor} from '@angular/common';
     selector: 'summoner',
     // Let Angular 2 know about `Http` and `SummonerService`
     providers: [...HTTP_PROVIDERS, SummonerService],
-    directives :[SummonerD3],
+    directives: [SummonerD3],
     template: require('./summoner.html')
 })
 export class Summoner {
@@ -61,7 +61,7 @@ export class Summoner {
   summonerStats(data) {
       this.summonerService.summonerStats(data)
         .subscribe((res) => {
-          console.log(res, "response on controller")
+          console.log(res[0].playerStatSummaries, "response on controller")
             // Populate our `summoner` array with the `response` data
             // this.summonerData.stats = res;
             let ps = res[0].playerStatSummaries

@@ -10,7 +10,7 @@ export class SummonerD3 {
   options;
   data;
 
-  @ViewChild(nvD3)
+  @ViewChild(summonerD3)
   nvD3: nvD3;
 
   ngOnInit(){
@@ -19,7 +19,7 @@ export class SummonerD3 {
   }
 
   ngAfterViewInit() {
-    
+
     // this.nvD3 - directive instance
     // for example, to update the chart
     this.nvD3.chart.update()
