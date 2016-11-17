@@ -25,6 +25,8 @@ export class Summoner {
     text: ''
   };
 
+
+
   private summoners: Array<Summoner> = [];
 
   constructor(public summonerService: SummonerService) {
@@ -61,6 +63,17 @@ export class Summoner {
 
           // Populate our `summoner` array with the `response` data
           this.summoners = res;
+      });
+  }
+
+  updateMatchList(id){
+    this.summonerService.updateMatchList(id)
+      .subscribe((res) => {
+
+          // Populate our `summoner` array with the `response` data
+          this.summoners = res;
+          // Reset `summoner` input
+
       });
   }
 }

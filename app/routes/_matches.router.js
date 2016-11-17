@@ -73,25 +73,25 @@ export default(app, router) => {
     });
   });
 
-}
-  // router.route('/matches/:matches_id')
+  router.route('/matches/:matchId')
 
   // ### Get a Matches item by ID
 
   // Accessed at GET http://localhost:8080/api/matches/:matches_id
-  // .get((req, res) => {
-  //
-  //   // Use mongoose to a single Matches item by id in the database
-  //   Matches.findOne(req.params.camelized_id, (err, matches) => {
-  //
-  //     if (err)
-  //       res.send(err);
-  //
-  //     else
-  //       res.json(matches);
-  //   });
-  // })
+  .get((req, res) => {
 
+    // Use mongoose to a single Matches item by id in the database
+    Matches.findOne(req.params.matchId, (err, matches) => {
+
+      if (err)
+        res.send(err);
+
+      else
+        res.json(matches);
+    });
+  })
+
+}
   // ### Update a Matches item by ID
 
   // Accessed at PUT http://localhost:8080/api/matches/:matches_id

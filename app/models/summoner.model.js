@@ -11,7 +11,10 @@ import mongoose from 'mongoose';
 let summonerSchema = new mongoose.Schema({
   text: { type : String },
   id: { type : Number },
-  profileIconId: { type : Number}
+  profileIconId: { type : Number},
+  matchList: {
+    type: [Number]
+  }
 });
 
 // Expose the model so that it can be imported and used in

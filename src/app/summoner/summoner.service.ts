@@ -44,4 +44,12 @@ export class SummonerService {
       return this.http.delete(`/api/summoner/${id}`)
           .map(res => res.json());
   }
+
+  updateMatchList(id) {
+    let headers = new Headers();
+    return this.http.put('/api/summoner/${id}', id,
+          {headers: headers})
+        .map(res => res.json());
+  }
 }
+// just make the api call here dummy, do we really have to store the matchlist in the db....!
