@@ -18,11 +18,8 @@ import {NgFor} from '@angular/common';
     selector: 'summoner',
     // Let Angular 2 know about `Http` and `SummonerService`
     providers: [...HTTP_PROVIDERS, SummonerService],
-<<<<<<< HEAD
     directives :[],
-=======
     directives :[SummonerD3],
->>>>>>> 7e7db954824d1f2292dfba13277339d657ef5904
     template: require('./summoner.html')
 })
 export class Summoner {
@@ -30,15 +27,12 @@ export class Summoner {
   // Initialize our `summonerData.summoner` to an empty `string`
   summonerData = {
     text: '',
-<<<<<<< HEAD
   };
 
   public stats: Array<Summoner> = [];
-=======
     stats: {}
   };
 
->>>>>>> 7e7db954824d1f2292dfba13277339d657ef5904
   private summoners: Array<Summoner> = [];
 
   constructor(public summonerService: SummonerService) {
@@ -82,7 +76,7 @@ export class Summoner {
                 this.stats.push(ps[i])
               }
             }
-            
+
 
             // this.stats.push(res[0].playerStatSummaries);
             // console.log(this.stats, "this")
