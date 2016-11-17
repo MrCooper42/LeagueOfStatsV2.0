@@ -21,11 +21,6 @@ export default(app, router) => {
     let query = Stats.find({summonerId: req.body.id})
 
     query.exec((err, summoned) => {
-<<<<<<< HEAD
-=======
-      console.log(summoned, summoned.length, "summ summLen");
-      console.log(summoned, "query exec summoned");
->>>>>>> 7e7db954824d1f2292dfba13277339d657ef5904
       if (!summoned.length) { //never been queried
         let sumID = req.body.id
         tn.getSummaryBySummonerId("na", sumID, "SEASON2016", (err, json) => {
