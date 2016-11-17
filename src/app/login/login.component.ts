@@ -20,21 +20,6 @@ import {HTTP_PROVIDERS} from '@angular/http';
   // Load our main `Sass` file into our `Matches` component
   providers: [...HTTP_PROVIDERS, LoginService]
 })
-export class Login implements OnInit {
-  myForm: FormGroup;
-  error = false;
-  errorMessage = '';
+export class Login {
 
-  constructor(private fb: FormBuilder, private loginService: LoginService) {}
-
-  onLogin() {
-    this.authenticate.signinUser(this.myForm.value);
-  }
-
-  ngOnInit():any {
-    this.myForm = this.fb.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required],
-    });
-  }
 }
