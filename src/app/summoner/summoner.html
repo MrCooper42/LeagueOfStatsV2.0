@@ -43,7 +43,7 @@
           <button type="submit" class="btn btn-primary btn-lg" (click)="updateMatchList(summoner._id)">Add Matches</button>
           <button type="submit" class="btn btn-primary btn-lg" (click)="getSummoner(summoner._id)">Add MatchData</button>
         </div>
-        <div *ngIf="stats.playerSummonerId == summoner.id" *ngFor="let stat of stats; trackBy: trackByStats">
+        <div *ngIf="stats.summonerId == summoner.id" *ngFor="let stat of stats; trackBy: trackByStats">
           <h5>{{ stat.playerStatSummaryType }}</h5>
           <ul>
             <strong>Aggregated Stats</strong>

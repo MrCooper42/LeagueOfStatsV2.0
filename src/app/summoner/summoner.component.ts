@@ -82,7 +82,7 @@ export class Summoner {
             let ps = res[0].playerStatSummaries
             for (let i = 0; i < ps.length; i++){
               if (ps[i].playerStatSummaryType == "Unranked"){
-                console.log(ps[i])
+                ps[i].summonerId = res[0].summonerId
                 this.stats.push(ps[i])
               }
             }
