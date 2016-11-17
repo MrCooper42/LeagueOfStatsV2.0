@@ -10,6 +10,8 @@ import authRoutes from './routes/_authentication.router.js';
 // Load our API routes for the `summonerRoutes` component
 import summonerRoutes from './routes/_summoner.router.js';
 
+import matchesRoutes from './routes/_matches.router.js';
+
 // Load our API routes for the `recipe` component
 import recipeRoutes from './routes/_recipe.router.js';
 
@@ -59,6 +61,8 @@ export default (app, router, passport) => {
 
   // Pass in our Express app and Router
   summonerRoutes(app, router);
+
+  matchesRoutes(app, router);
 
 	recipeRoutes(app, router);
 

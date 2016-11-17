@@ -4,7 +4,7 @@ import {Http, Headers} from '@angular/http';
 @Injectable()
 export class MatchesService {
 
-  constructor(public http: Http) { }
+  constructor(public http:Http) { }
 
 
   getAll() {
@@ -15,6 +15,7 @@ export class MatchesService {
     let headers = new Headers();
 
     headers.append('Content-Type', 'application/json');
+
     return this.http.post('/api/matches', JSON.stringify(data), { headers: headers }).map(res => res.json());
   }
   deleteMatch(id) {
