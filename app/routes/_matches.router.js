@@ -1,158 +1,152 @@
-// */app/routes/_summoner.router.js*
+// ```
+// _matches.route.js
+// (c) 2016 David Newman
+// david.r.niciforovic@gmail.com
+// _matches.route.js may be freely distributed under the MIT license
+// ```
 
-// ## Summoner API object
+// */app/routes/matches/_matches.router.js*
 
-// Load the summoner model
-import Summoner from '../models/summoner.model';
+// ## Matches API object
+
+// GET | /api/matches | Get all of the Matches items
+// GET | /api/matches/:matches_id |Get a single Matches item by Matches item id
+// POST | /api/matches | Create a single Matches item
+// DELETE | /api/matches/:matches_id | Delete a single Matches item
+// PUT | /api/matches/:matches_id | Update a Matches item with new info
+
+// Load the `Matches` model
+import Matches from '../models/match.model';
 
 import * as leaguetn from 'league-typenode';
 
-var tn : leaguetb.LeagueTypenode = new leaguetn.LeagueTypenode('RGAPI-19efd6ff-0624-46a1-b90c-f491801608d0', false);
+var tn: leaguetb.LeagueTypenode = new leaguetn.LeagueTypenode('RGAPI-19efd6ff-0624-46a1-b90c-f491801608d0', false);
+
 
 export default(app, router) => {
 
-  // ### Summoner API Routes
+  // ### Matches API Routes
 
-  // Define routes for the summoner item API
+  // Define routes for the Matches item API
 
-  router.route('/summoner')
+  router.route('/matches')
 
-  // ### Create a summoner item
+  // ### Create a Matches item
 
-  // Accessed at POST http://localhost:8080/api/summoner
+  // Accessed at POST http://localhost:8080/api/matches
 
-  // Create a summoner item
-    .post((req, res, next) => {
-
-    var query = Summoner.find({text: req.body.text})
-
-    query.exec((err, summoned) => {
-      if (!summoned.length) { //there is no user
-        tn.getSummonerByNames("na", req.body.text, (err, summoner) => {
+  // Create a Matches item
+  .post((req, res) => {
+    // {matchId:req.params.matchId }
+    // var matchId = 2054994283;
+    console.log("post fired", req.body);
+        tn.getMatchById('na', req.body.matchId, false, (err, match) => {
           if (err) {
             res.send(err)
           }
-          Summoner.create({
-            text: req.body.text,
-            id: summoner.id,
-            profileIconId: summoner.profileIconId
-          }, (err, summoner) => {
-            if (err) {
+          console.log("This is not the match you are looking for", match);
+          Matches.create(match, (err, matches) => {
+            if (err)
               res.send(err);
-            }
-            console.log(`Summoner created: ${summoner}`);
-
-            Summoner.find((err, summoners) => {
-              if (err) {
-                res.send(err);
-              }
-              console.log(summoners, "summoners outside sent back");
-              res.json(summoners);
-            })
+            // DEBUG
+            console.log(`Matches created: ${matches}`);
+              res.json(matches);
           });
         })
-      } else {
-        Summoner.find((err, summoners) => {
-          if (err) {
-            res.send(err);
-          }
-          console.log(summoners, "summoners outside sent back");
-          res.json(summoners);
-        })
-      }
     })
-  })
 
-  // ### Get all of the summoner items
 
-  // Accessed at GET http://localhost:8080/api/summoner
-    .get((req, res) => {
-    // Use mongoose to get all summoner items in the database
-    Summoner.find((err, summoner) => {
 
-      if (err) {
+  // ### Get all of the Matches items
+
+  // Accessed at GET http://localhost:8080/api/matches
+  .get((req, res) => {
+    console.log('get fired');
+    // Use mongoose to get all Matches items in the database
+    Matches.find((err, matches) => {
+      if (err){
         res.send(err);
-      } else
-        //make matchList query here
-        res.json(summoner);
       }
-    );
-  });
 
-  router.route('/summoner/:summoner_id')
-
-  // ### Get a summoner item by ID
-
-  // Accessed at GET http://localhost:8080/api/summoner/:summoner_id
-    .get((req, res) => {
-
-    // Use mongoose to a single summoner item by id in the database
-    Summoner.findOne(req.params.summoner_id, (err, summoner) => {
-
-      if (err)
-        res.send(err);
-
-else
-        res.json(summoner);
-      }
-    );
-  })
-
-  // ### Update a summoner item by ID
-
-  // Accessed at PUT http://localhost:8080/api/summoner/:summoner_id
-    .put((req, res) => {
-
-    // use our summoner model to find the summoner item we want
-    Summoner.findOne({
-
-      '_id': req.params.summoner_id
-
-    }, (err, summoner) => {
-
-      if (err)
-        res.send(err);
-
-      // Only update a field if a new value has been passed in
-      if (req.body.text)
-        summoner.text = req.body.text;
-
-      // save the summoner item
-      return summoner.save((err) => {
-
-        if (err)
-          res.send(err);
-
-        return res.send(summoner);
-
-      });
-    });
-  })
-
-  // ### Delete a summoner item by ID
-
-  // Accessed at DELETE http://localhost:8080/api/summoner/:summoner_id
-    .delete((req, res) => {
-
-    // DEBUG
-    console.log(`Attempting to delete summoner with id: ${req.params.summoner_id}`);
-
-    Summoner.remove({
-
-      _id: req.params.summoner_id
-    }, (err, summoner) => {
-
-      if (err)
-        res.send(err);
-
-      console.log('Summoner successfully deleted!');
-
-      Summoner.find((err, summoners) => {
-        if (err)
-          res.send(err);
-
-        res.json(summoners);
-      });
+      console.log(matches,"these are the matches you may be looking for");
+      res.json(matches);
     });
   });
-};
+
+}
+  // router.route('/matches/:matches_id')
+
+  // ### Get a Matches item by ID
+
+  // Accessed at GET http://localhost:8080/api/matches/:matches_id
+  // .get((req, res) => {
+  //
+  //   // Use mongoose to a single Matches item by id in the database
+  //   Matches.findOne(req.params.camelized_id, (err, matches) => {
+  //
+  //     if (err)
+  //       res.send(err);
+  //
+  //     else
+  //       res.json(matches);
+  //   });
+  // })
+
+  // ### Update a Matches item by ID
+
+  // Accessed at PUT http://localhost:8080/api/matches/:matches_id
+  // .put((req, res) => {
+  //
+  //   // use our Matches model to find the Matches item we want
+  //   Matches.findOne({
+  //
+  //     '_id': req.params.matches_id
+  //
+  //   }, (err, matches) => {
+  //
+  //     if (err)
+  //       res.send(err);
+  //
+  //     // Only update a field if a new value has been passed in
+  //     if (req.body.text)
+  //       matches.text = req.body.text;
+  //
+  //     // save the Matches item
+  //     return matches.save((err) => {
+  //
+  //       if (err)
+  //         res.send(err);
+  //
+  //       return res.send(matches);
+  //
+  //     });
+  //   });
+  // })
+
+  // ### Delete a Matches item by ID
+
+  // Accessed at DELETE http://localhost:8080/api/matches/:matches_id
+  // .delete((req, res) => {
+  //
+  //   // DEBUG
+  //   console.log(`Attempting to delete matches with id: ${req.params.matches_id}`);
+  //
+  //   Matches.remove({
+  //
+  //     _id: req.params.matches_id
+  //   }, (err, matches) => {
+  //
+  //     if (err)
+  //       res.send(err);
+  //
+  //     console.log('Matches successfully deleted!');
+  //
+  //     Matches.find((err, matchess) => {
+  //       if (err)
+  //         res.send(err);
+  //
+  //       res.json(matchess);
+  //     });
+  //   });
+  // });
+// };
