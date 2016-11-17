@@ -17,12 +17,10 @@ import {HTTP_PROVIDERS} from '@angular/http';
   // Every Angular template is first compiled by the browser before Angular runs it's compiler
   template: require('./matches.component.html'),
   // Load our main `Sass` file into our `Matches` component
-  providers: [...HTTP_PROVIDERS, MatchesService],
-  directives: [],
-  pipes: []
+  providers: [...HTTP_PROVIDERS, MatchesService]
 })
 export class Matches {
-  matchData = {};
+  matchData = {matchId:2054994283};
 
   private matches: Array<Matches> = [];
 
@@ -30,7 +28,7 @@ export class Matches {
     matchesService.getAll()
       .subscribe((res)=>{
         this.matches = res;
-        this.matchData = {};
+        // this.matchData = {};
       })
   }
 
@@ -38,7 +36,7 @@ export class Matches {
     this.matchesService.createMatch(this.matchData)
       .subscribe((res)=>{
         this.matches = res;
-        this.matchData = {};
+        // this.matchData = {};
       })
   }
 

@@ -11,7 +11,7 @@ export default (mongoose) => {
       process.exit(0);
     });
   };
-
+  mongoose.set("debug",true)
   mongoose.connection.on("connected", (ref) => {
 
     console.log(`Successfully connected to ${process.env.NODE_ENV}` +
