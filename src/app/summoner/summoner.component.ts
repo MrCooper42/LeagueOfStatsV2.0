@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
 
 import {SummonerService} from './summoner.service';
-
-import {nvD3} from 'ng2-nvd3'
-declare let d3: any;
-
-import {SummonerD3} from './summonerD3.component';
+//
+// import {nvD3} from 'ng2-nvd3'
+// declare let d3: any;
+//
+// import {SummonerD3} from './summonerD3.component';
 
 // We `import` `http` into our `SummonerService` but we can only
 // specify providers within our component
@@ -20,7 +20,7 @@ import {NgFor} from '@angular/common';
     selector: 'summoner',
     // Let Angular 2 know about `Http` and `SummonerService`
     providers: [...HTTP_PROVIDERS, SummonerService],
-    directives :[SummonerD3],
+    directives :[],
     template: require('./summoner.html')
 })
 export class Summoner {
@@ -77,7 +77,6 @@ export class Summoner {
         .subscribe((res) => {
           console.log(res[0].playerStatSummaries, "response on controller")
             // Populate our `summoner` array with the `response` data
-            // this.summonerData.stats = res;
             let ps = res[0].playerStatSummaries
             for (let i = 0; i < ps.length; i++){
               if (ps[i].playerStatSummaryType == "Unranked"){

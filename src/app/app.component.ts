@@ -28,13 +28,13 @@ import {NgFor} from '@angular/common';
 // Import Summoner component
 import {Summoner} from './summoner/summoner.component';
 
-import {nvD3} from 'ng2-nvd3'
+// import {nvD3} from 'ng2-nvd3'
 
 // Import Matches component
 import {Matches} from './matches/matches.component';
 
 // Import SummonerD3 component
-import {SummonerD3} from './summoner/summonerD3.component';
+import {SummonerChart} from './summoner/summonerChart.component';
 
 // Import Recipes component
 import {Recipes} from './recipes/recipes.component';
@@ -47,8 +47,7 @@ import {Recipes} from './recipes/recipes.component';
   selector: 'app',
   providers: [  ],
   directives: [ Summoner,
-                SummonerD3,
-                nvD3,
+                SummonerChart,
                 Matches,
                 NgFor,
                 RouterActive],
