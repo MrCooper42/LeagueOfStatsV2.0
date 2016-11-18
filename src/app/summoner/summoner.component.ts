@@ -39,6 +39,7 @@ export class Summoner {
   private summoners: Array<Summoner> = [];
   public matchData: Array<Summoner> = [];
   private matchList: Array<Summoner> = [];
+  private totalDamage: Array<Summoner> = [];
 
   constructor(public summonerService: SummonerService) {
     console.log('Summoner constructor go!');
@@ -83,6 +84,19 @@ export class Summoner {
   getSummoner(id) {
     this.summonerService.getSummoner(id)
       .subscribe((res) => {
+        let dataObj = [];
+        let summId = [];
+        for (let i = 0; i < res.participantIdentities.length; i++) {
+          summId.push({ id: res.participantIdentities[i].participantId, summonerName: res.participantIdentities[i].player.summonerName })
+        }
+        for (let i = 0; i < res.participants.length; i++) {
+          for (let z = 0; z < summId.length; z++) {
+            if (res.participants[i].participantId === summId[z].id) {
+              dataObj.push({ x: summId[z].summonerName, y: res.participants[i].stats.totalDamageDealt, b: res.participants[i].stats.winner, k: res.participants[i].stats.kills, d: res.participants[i].stats.deaths, a: res.participants[i].stats.assists })
+            }
+          }
+        }
+        this.totalDamage = dataObj;
         this.matchData.push(res);
       })
   }
@@ -95,7 +109,7 @@ export class Summoner {
         // Populate our `summoner` array with the `response` data
         this.summoners = res;
       });
-      }
+  }
 
   updateMatchList(id) {
     console.log(id, 'component id')
