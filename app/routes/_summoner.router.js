@@ -118,7 +118,7 @@ export default(app, router) => {
       console.log(summoned, 'is this the summoner you are looking for');
       if (summoned) {
         tn.getMatchById('na', summoned.matchList[summoned.matchList.length - 1], false, (err, match) => {
-          console.log('this is a match, its a little less scary', match);
+          console.log('this is a match, its a little less scary', match.participants[0].stats, match.participantIdentities[0].participantId);
           res.json(match)
         })
       }

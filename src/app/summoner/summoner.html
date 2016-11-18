@@ -30,6 +30,7 @@
 
       <!-- LOOP OVER THE SUMMONers IN $scope.summoners -->
       <span *ngFor="let summoner of summoners">
+        <img src="http://ddragon.leagueoflegends.com/cdn/6.22.1/img/profileicon/{{summoner.profileIconId}}.png" alt="" />
         <div class="checkbox">
           <label>
             <input type="checkbox" (click)="deleteSummoner(summoner._id)" bind-checked="false">
@@ -37,14 +38,15 @@
           </label>
           <label>
             <input type="checkbox" (click)="summonerStats(summoner)" bind-checked="false">
-            {{ summoner.id }}
+            Click to get summoner stats.
           </label>
           <h5>{{ stats.playerSummonerId }}</h5>
           <button type="submit" class="btn btn-primary btn-lg" (click)="updateMatchList(summoner._id)">Add Matches</button>
           <button type="submit" class="btn btn-primary btn-lg" (click)="getSummoner(summoner._id)">Add MatchData</button>
         </div>
         <div *ngIf="stats.summonerId == summoner.id" *ngFor="let stat of stats; trackBy: trackByStats">
-          <h5>{{ stat.playerStatSummaryType }}</h5>
+          <h5>{{stat.summonerId}}, {{summoner.id}}</h5>
+          <h5 *ngIf="stats.summonerId == summoner.id">{{ stat.playerStatSummaryType }}</h5>
           <ul>
             <strong>Aggregated Stats</strong>
             <li>Total Assists:
