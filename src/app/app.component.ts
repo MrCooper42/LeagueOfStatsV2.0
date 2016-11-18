@@ -25,12 +25,6 @@ import {Home} from './home';
 // Import NgFor directive
 import {NgFor} from '@angular/common';
 
-// Import Login component
-import {Login} from './login/login.component';
-
-// Import Signup component
-import {Signup} from './signup/signup.component';
-
 // Import Summoner component
 import {Summoner} from './summoner/summoner.component';
 
@@ -54,6 +48,7 @@ import {Recipes} from './recipes/recipes.component';
   providers: [  ],
   directives: [ Summoner,
                 SummonerD3,
+                nvD3,
                 Matches,
                 NgFor,
                 RouterActive],
@@ -66,11 +61,11 @@ import {Recipes} from './recipes/recipes.component';
       <md-toolbar color="primary">
           <span>{{ name }}</span>
           <span class="fill"></span>
-          <button md-button router-active [routerLink]=" ['Login'] ">
-            Login
+          <button md-button router-active [routerLink]=" ['Index'] ">
+            Index
           </button>
-          <button md-button router-active [routerLink]=" ['Signup'] ">
-            Signup
+          <button md-button router-active [routerLink]=" ['Home'] ">
+            Home
           </button>
           <button md-button router-active [routerLink]=" ['Summoner'] ">
             Summoner
@@ -103,8 +98,6 @@ import {Recipes} from './recipes/recipes.component';
 @RouteConfig([
   { path: '/', name: 'Index', component: Home, useAsDefault: true },
   { path: '/home',  name: 'Home',  component: Home },
-  { path: '/login', component: Login, name: 'Login' },
-  { path: '/signup', component: Signup, name: 'Signup' },
   { path: '/summoner', component: Summoner, name: 'Summoner' },
   { path: '/matches', component: Matches, name: 'Matches' },
   { path: '/redux', component: Recipes, name: 'Recipes' },

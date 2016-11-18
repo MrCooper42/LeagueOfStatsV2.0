@@ -5,7 +5,7 @@ import {SummonerService} from './summoner.service';
 import {nvD3} from 'ng2-nvd3'
 declare let d3: any;
 
-import {SummonerD3} from './summonerD3.component'
+import {SummonerD3} from './summonerD3.component';
 
 // We `import` `http` into our `SummonerService` but we can only
 // specify providers within our component
@@ -13,7 +13,6 @@ import {HTTP_PROVIDERS} from '@angular/http';
 
 // Import NgFor directive
 import {NgFor} from '@angular/common';
-
 
 // Create metadata with the `@Component` decorator
 @Component({
