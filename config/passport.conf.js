@@ -258,7 +258,7 @@ export default (passport) => {
   passport.use('local-login', new LocalStrategy({
 
     // By default, local strategy uses username and password
-    usernameField : 'username',
+    usernameField : 'email',
 
     passwordField : 'password',
 
@@ -312,15 +312,7 @@ export default (passport) => {
 
     // Combat case sensitivity by converting username to lowercase
     // characters
-    User.findOne({
-
-      // Model.find `$or` Mongoose condition
-      $or : [
-
-        { 'local.username' : username.toLowerCase() },
-
-        { 'local.email' : username.toLowerCase() }
-      ]
+    User.findOne({'local.email' : username.toLowerCase()
     }, (err, user) => {
 
       // If there are any errors, return the error before anything

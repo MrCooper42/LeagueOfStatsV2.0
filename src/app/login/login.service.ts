@@ -11,7 +11,7 @@ export class LoginService {
 
     headers.append('Content-Type', 'application/json');
 
-    return this.http.post('/api/auth/login',JSON.stringify(data),{headers: headers})
+    return this.http.post('/api/auth/login', JSON.stringify(data), {headers: headers})
       .map(res => res.json());
   }
 }
