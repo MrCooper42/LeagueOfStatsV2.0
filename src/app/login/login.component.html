@@ -1,3 +1,4 @@
+<md-card>
 <div class="container text-center">
   <div class="signin-wrapper">
     <h1>Login to use all features</h1>
@@ -5,10 +6,13 @@
     <form >
         <label for="email">E-Mail</label>
         <input  type="email" class="form-control input-lg text-center" [(ngModel)]="userData.email" required>
+        <br><br>
         <label for="password">Password</label>
         <input  type="password"  class="form-control input-lg text-center"
         [(ngModel)]="userData.password" required>
+        <br><br>
       <button type="submit" class="btn btn-primary" (click)="login()" >Log in</button>
     </form>
   </div>
 </div>
+</md-card>
