@@ -6,7 +6,7 @@
  */
 import {Component, OnInit} from '@angular/core';
 // import { FormBuilder, FormGroup, Validators } from "@angular/common";
-
+import {RouteConfig, Router} from '@angular/router-deprecated';
 import {LoginService} from './login.service';
 import {HTTP_PROVIDERS} from '@angular/http';
 /*
@@ -25,21 +25,19 @@ export class Login {
     passord:'',
     email:''
   }
-  constructor(public loginService:LoginService){
+  constructor(public loginService:LoginService, public router: Router){
     loginService
   }
 
   login(){
     this.loginService.login(this.userData)
     .subscribe((res) => {
-
-        // Populate our `summoner` array with the `response` data
-        this.userData = res;
         // Reset `summoner` input
         this.userData = {
           passord:'',
           email:''
         };
+        this.router.navigateByUrl('/summoner')
     });
   }
 }
