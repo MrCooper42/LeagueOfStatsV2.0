@@ -1,6 +1,6 @@
 //our root app component
 import {Component} from '@angular/core'
-import {NG2D3Module} from 'ng2d3';
+// import {NG2D3Module} from 'ng2d3';
 import * as d3 from 'd3'
 import {single, multi} from './data';
 
