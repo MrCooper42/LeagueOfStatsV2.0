@@ -10,7 +10,6 @@ import {HTTP_PROVIDERS} from '@angular/http';
 // Import NgFor directive
 import {NgFor} from '@angular/common';
 
-
 // Create metadata with the `@Component` decorator
 @Component({
     // HTML tag for specifying this component
@@ -33,9 +32,6 @@ export class Summoner {
   summonerName = {
     text: ''
   };
-
-
-
 
   private summoners: Array<Summoner> = [];
   public matchData: Array<Summoner> = [];

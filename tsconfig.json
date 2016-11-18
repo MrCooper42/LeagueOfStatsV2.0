@@ -25,5 +25,11 @@
   },
   "compileOnSave": false,
   "buildOnSave": false,
-  "atom": { "rewriteTsconfig": false }
+  "atom": { "rewriteTsconfig": false
+  },
+  "compilerOptions": {
+    "types": [
+      "d3"
+    ]
+  }
 }
