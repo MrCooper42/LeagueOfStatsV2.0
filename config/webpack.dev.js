@@ -72,6 +72,7 @@ module.exports = webpackMerge(commonConfig, {
   plugins: [
 
     new webpack.ProvidePlugin({
+      NG2D3Module: 'ng2d3',
       d3: 'd3'
     }),
     // TODO(datatypevoid): investigate the necessity of these two

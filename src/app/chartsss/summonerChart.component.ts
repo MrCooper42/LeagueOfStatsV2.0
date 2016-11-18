@@ -1,6 +1,6 @@
 //our root app component
 import {Component} from '@angular/core'
-// import {NG2D3Module} from 'ng2d3';
+import {NG2D3Module} from 'ng2d3';
 import * as d3 from 'd3'
 import {single, multi} from './data';
 
@@ -44,11 +44,10 @@ export class SummonerChart {
   doughnut = false;
 
   // line, area
-  autoScale = true;
+  autoScale = false;
 
   constructor() {
     Object.assign(this, {single, multi})
-    console.log("something is here")
   }
 
 }

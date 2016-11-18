@@ -5,21 +5,24 @@ const height = 300;
 const padding = 100;
 const barPadding = 5;
 
-d3.json('matches1.json', function(data) {
+d3.json('match1.json', function(data) {
   console.log(data.matches[0], "first data point");
 })
+//
+// d3.select('summonerChart2')
+// .append('h1')
+// .text('Let\'s build a bar graph!')
 
-d3.select('summonerChart2')
-.append('h1')
-.text('Let\'s build a bar graph!')
-
-const svg = d3.select('summonerChart2')
+const svg = d3.select('body')
 .append('svg')
+.append('h1')
+.text('I am super cool')
 .attr('width', width)
 .attr('height', height)
 .style('padding', padding)
 
 d3.json('salesData.json', function(data) {
+  console.log("data");
   let xScale = d3.scaleBand()
     .domain(data.map((d) => d.day))
     .range([0, width])
