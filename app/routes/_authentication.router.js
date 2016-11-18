@@ -62,7 +62,7 @@ export default (app, router, passport, auth, admin) => {
   });
 
   router.post('/auth/signup', (req, res, next) => {
-
+    console.log('sign up post fired');
     // Call `authenticate()` from within the route handler, rather than
     // as a route middleware. This gives the callback access to the `req`
     // and `res` object through closure.

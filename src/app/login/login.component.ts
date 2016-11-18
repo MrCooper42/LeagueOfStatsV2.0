@@ -33,8 +33,7 @@ export class Login {
     this.loginService.login(this.userData)
     .subscribe((res) => {
 
-        // Populate our `summoner` array with the `response` data
-        this.userData = res;
+        
         // Reset `summoner` input
         this.userData = {
           passord:'',

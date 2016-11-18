@@ -20,5 +20,26 @@ import {HTTP_PROVIDERS} from '@angular/http';
   providers: [...HTTP_PROVIDERS, SignupService]
 })
 export class Signup {
+  userData = {
+    username: '',
+    email: '',
+    password: ''
+  }
 
+  constructor(public signupService:SignupService){
+    signupService
+  }
+
+  signup(){
+    this.signupService.signup(this.userData)
+    .subscribe((res) => {
+
+
+        this.userData = {
+          username: '',
+          email: '',
+          password: ''
+        }
+    });
+  }
 }
