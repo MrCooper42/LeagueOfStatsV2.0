@@ -9,7 +9,7 @@ d3.json('matches1.json', function(data) {
   console.log(data.matches[0], "first data point");
 })
 
-d3.select('summonerChart')
+d3.select('summonerChart2')
 .append('h1')
 .text('Let\'s build a bar graph!')
 

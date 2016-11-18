@@ -9,6 +9,8 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {RouteConfig, Router} from '@angular/router-deprecated';
 
+import * as D3 from 'd3';
+
 import {AppState} from './app.service';
 
 import {RouterActive} from './shared/directives/router-active/router-active.directive';
