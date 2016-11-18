@@ -1,10 +1,3 @@
-// ```
-// app.ts
-// (c) 2016 David Newman
-// blackshuriken@hotmail.com
-// app.ts may be freely distributed under the MIT license
-// ```
-
 // *src/app/app.ts*
 
 // This file contains the main class as well as the necessary
@@ -34,16 +27,13 @@ import {Signup} from './signup/signup.component';
 // Import Summoner component
 import {Summoner} from './summoner/summoner.component';
 
-// import {nvD3} from 'ng2-nvd3'
+import {SummonerChart} from './chartsss/summonerChart.component'
 
 // Import Matches component
 import {Matches} from './matches/matches.component';
 
 // Import SummonerD3 component
 // import {SummonerD3} from './summoner/summonerD3.component';
-
-// Import Recipes component
-import {Recipes} from './recipes/recipes.component';
 
 /*
  * App Component
@@ -53,6 +43,7 @@ import {Recipes} from './recipes/recipes.component';
   selector: 'app',
   providers: [  ],
   directives: [ Summoner,
+                SummonerChart,
                 Matches,
                 NgFor,
                 RouterActive],
@@ -77,9 +68,6 @@ import {Recipes} from './recipes/recipes.component';
           <button md-button router-active [routerLink]=" ['Matches'] ">
             Matches
           </button>
-          <button md-button router-active [routerLink]=" ['Recipes'] ">
-            Recipes
-          </button>
           <button md-button router-active [routerLink]=" ['About'] ">
             About
           </button>
@@ -90,11 +78,8 @@ import {Recipes} from './recipes/recipes.component';
 
       <router-outlet></router-outlet>
 
-      <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
-
       <footer>
-        <img [src]="angularLogo" width="7%">
-        <span>Angular 2 MEAN Webpack with D3 <a [href]="url">enter url here</a></span>
+        <span>Leage of Stats</span>
       </footer>
     </md-content>
   `
@@ -105,8 +90,9 @@ import {Recipes} from './recipes/recipes.component';
   { path: '/login', component: Login, name: 'Login' },
   { path: '/signup', component: Signup, name: 'Signup' },
   { path: '/summoner', component: Summoner, name: 'Summoner' },
+  // { path: '/summonerCharts', component: SummonerChart, name: 'Charts' },
   { path: '/matches', component: Matches, name: 'Matches' },
-  { path: '/redux', component: Recipes, name: 'Recipes' },
+  // { path: '/redux', component: SummonerD3, name: 'SummonerD3' },
   // Async load a component using Webpack's require with
   // es6-promise-loader and webpack `require`
   { path: '/about', name: 'About', loader: () => require('es6-promise!./about')('About') },
