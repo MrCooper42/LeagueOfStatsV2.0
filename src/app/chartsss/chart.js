@@ -13,7 +13,7 @@ d3.select('summonerChart2')
 .append('h1')
 .text('Let\'s build a bar graph!')
 
-const svg = d3.select('body')
+const svg = d3.select('summonerChart2')
 .append('svg')
 .attr('width', width)
 .attr('height', height)

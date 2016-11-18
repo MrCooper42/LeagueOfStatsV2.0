@@ -13,7 +13,9 @@ console.log('`About` component loaded asynchronously');
   template: `
     <md-card>
       <h3>
-        david.r.niciforovic@gmail.com
+      Matthew Cooper
+      Scott Van Gilder
+      Zack Dillie
       </h3>
     </md-card>
   `,

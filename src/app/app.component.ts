@@ -9,7 +9,7 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {RouteConfig, Router} from '@angular/router-deprecated';
 
-import * as D3 from 'd3';
+import * as d3 from 'd3';
 
 import {AppState} from './app.service';
 
@@ -67,8 +67,8 @@ import {Matches} from './matches/matches.component';
           <button md-button router-active [routerLink]=" ['Summoner'] ">
             Summoner
           </button>
-          <button md-button router-active [routerLink]=" ['Matches'] ">
-            Matches
+          <button md-button router-active [routerLink]=" ['SummonerChart'] ">
+            Chart
           </button>
           <button md-button router-active [routerLink]=" ['About'] ">
             About
@@ -93,7 +93,7 @@ import {Matches} from './matches/matches.component';
   { path: '/signup', component: Signup, name: 'Signup' },
   { path: '/summoner', component: Summoner, name: 'Summoner' },
   // { path: '/summonerCharts', component: SummonerChart, name: 'Charts' },
-  { path: '/matches', component: Matches, name: 'Matches' },
+  { path: '/summonerCharts', component: SummonerChart, name: 'SummonerChart' },
   // { path: '/redux', component: SummonerD3, name: 'SummonerD3' },
   // Async load a component using Webpack's require with
   // es6-promise-loader and webpack `require`

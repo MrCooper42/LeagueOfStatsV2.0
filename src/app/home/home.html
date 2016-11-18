@@ -3,38 +3,18 @@
   <md-card>
     <md-card-title>Local State</md-card-title>
     <md-card-content>
-
-      <form (ngSubmit)="submitState(localState.value)" autocomplete="off">
-
-        <md-input
-          placeholder="Submit Local State to App State"
-          [value]="localState.value"
-          (input)="localState.value = $event.target.value"
-          autofocus>
-        </md-input>
-
-        <button md-raised-button color="primary">Submit Value</button>
-      </form>
-      <!--
-        <input type="text" [value]="localState.value" (input)="localState.value = $event.target.value" autofocus>
-        Rather than wiring up two-way data-binding ourselves with [value] and (input)
-        we can use Angular's [(ngModel)] syntax
-        <input type="text" [(ngModel)]="localState.value" autofocus>
-      -->
-
-      <!-- <pre>this.localState = {{ localState | json }}</pre> -->
-
+      <h1>What a wonderful splash page!</h1>
     </md-card-content>
   </md-card>
 
-  <md-card>
+  <!-- <md-card>
     <p>
       <button type="button" class="btn btn-default" (click)="removeDynamic()">
         Remove last dynamic
       </button>
-    </p>
+    </p> -->
 
-    <accordion close-others="true">
+    <!-- <accordion close-others="true">
       <accordion-group heading="This is the header" is-open="true">
         This is the content
       </accordion-group>
@@ -44,7 +24,7 @@
       <accordion-group heading="Another group" [is-open]="isOpen">
         More content
       </accordion-group>
-    </accordion>
-  </md-card>
+    </accordion> -->
+  <!-- </md-card> -->
 
 </div>

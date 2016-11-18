@@ -5,6 +5,8 @@ var webpackMerge = require('webpack-merge');
 // Common `webpack` configuration for `dev` and `prod`
 var commonConfig = require('./webpack.common.js');
 
+var webpack = require('webpack');
+
 // Webpack Plugins
 var DefinePlugin = require('webpack/lib/DefinePlugin');
 var HotModuleReplacementPlugin = require('webpack/lib/HotModuleReplacementPlugin');
@@ -69,6 +71,9 @@ module.exports = webpackMerge(commonConfig, {
   // See: http://webpack.github.io/docs/configuration.html#plugins
   plugins: [
 
+    new webpack.ProvidePlugin({
+      d3: 'd3'
+    }),
     // TODO(datatypevoid): investigate the necessity of these two
     // following lines
     new HotModuleReplacementPlugin(),
