@@ -2,6 +2,10 @@
 // This file contains all styles related to the header of the site/application.
 // -----------------------------------------------------------------------------
 
+md-toolbar {
+  background-color: rgb(108, 186, 207);
+}
+
 md-toolbar ul {
   display: inline;
   list-style-type: none;

@@ -7,7 +7,7 @@ import {single, multi} from './data';
 @Component({
   selector: 'summonerChart',
   template: `
-  <h1>I am here...</h1>
+  // <h1>I am here...</h1>
     <advanced-pie-chart
       [view]="view"
       [scheme]="colorScheme"
