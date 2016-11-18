@@ -55,7 +55,7 @@ export default (app, router, passport, auth, admin) => {
         res.status(200);
 
         // Return the user object
-        res.send(req.user);
+        res.send(user);
       });
 
     }) (req, res, next);

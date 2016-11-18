@@ -16,10 +16,30 @@ import {HTTP_PROVIDERS} from '@angular/http';
 @Component({
   selector: 'login',
   // Every Angular template is first compiled by the browser before Angular runs it's compiler
-  template: require('./login.component.html'),
+  providers: [...HTTP_PROVIDERS, LoginService],
+  template: require('./login.component.html')
   // Load our main `Sass` file into our `Matches` component
-  providers: [...HTTP_PROVIDERS, LoginService]
 })
 export class Login {
+  userData = {
+    passord:'',
+    email:''
+  }
+  constructor(public loginService:LoginService){
+    loginService
+  }
 
+  login(){
+    this.loginService.login(this.userData)
+    .subscribe((res) => {
+
+        // Populate our `summoner` array with the `response` data
+        this.userData = res;
+        // Reset `summoner` input
+        this.userData = {
+          passord:'',
+          email:''
+        };
+    });
+  }
 }

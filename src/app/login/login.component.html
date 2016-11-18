@@ -2,12 +2,13 @@
   <div class="signin-wrapper">
     <h1>Login to use all features</h1>
     <!-- <form ng-submit="login()" name="loginForm"> -->
-    <form name="loginForm">
+    <form >
         <label for="email">E-Mail</label>
-        <input formControlName="email" type="email" id="email" class="form-control">
+        <input  type="email" class="form-control input-lg text-center" [(ngModel)]="userData.email" required>
         <label for="password">Password</label>
-        <input formControlName="password" type="password" id="password" class="form-control">
-      <button type="submit" class="btn btn-primary">Log in</button>
+        <input  type="password"  class="form-control input-lg text-center"
+        [(ngModel)]="userData.password" required>
+      <button type="submit" class="btn btn-primary" (click)="login()" >Log in</button>
     </form>
   </div>
 </div>
