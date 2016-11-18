@@ -20,7 +20,6 @@ import {provideStore} from '@ngrx/store';
 import {RecipeService} from './recipes/recipe.service';
 import {recipes} from './recipes/recipes.reducer';
 import {selectedRecipe} from './recipes/selected-recipe.reducer';
-import { CHART_DIRECTIVES } from 'ng2-charts/ng2-charts';
 //# Application Redux Stores
 //
 //** Redux stores for use with our Angular 2 app **

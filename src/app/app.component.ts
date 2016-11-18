@@ -15,7 +15,7 @@
  */
 import {Component, ViewEncapsulation} from '@angular/core';
 import {RouteConfig, Router} from '@angular/router-deprecated';
-
+// import {DamageChartConfig} from './damageChart/damageChart-config';
 import {AppState} from './app.service';
 
 import {RouterActive} from './shared/directives/router-active/router-active.directive';
@@ -34,6 +34,7 @@ import {Signup} from './signup/signup.component';
 // Import Summoner component
 import {Summoner} from './summoner/summoner.component';
 
+import {DamageChart} from './damageChart/damageChart.component'
 // import {nvD3} from 'ng2-nvd3'
 
 // Import Matches component

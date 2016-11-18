@@ -115,10 +115,10 @@ export default(app, router) => {
     var query = Summoner.findOne({_id: req.params.summoner_id})
     var summonerMatchData = []
     query.exec((err, summoned) => {
-      console.log(summoned, 'is this the summoner you are looking for');
+      // console.log(summoned, 'is this the summoner you are looking for');
       if (summoned) {
         tn.getMatchById('na', summoned.matchList[summoned.matchList.length - 1], false, (err, match) => {
-          console.log('this is a match, its a little less scary', match.participants[0].stats, match.participantIdentities[0].participantId);
+          // console.log('this is a match, its a little less scary', match.participants[0].stats, match.participantIdentities[0].participantId);
           res.json(match)
         })
       }
