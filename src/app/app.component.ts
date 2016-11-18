@@ -56,7 +56,7 @@ import {Matches} from './matches/matches.component';
   template: `
     <md-content>
       <md-toolbar color="primary">
-          <span style=""><img src="assets/img/League-of-Legends.png" alt="League of Legends" height="42" width="84">{{ name }}</span>
+          <span style=""><img src="assets/img/League-of-Legends.png" alt="League of Legends" height="42" width="84"><img src="assets/img/League\ of\ Stats.png" alt="League of Stats" height="48" width="175"></span>
           <span class="fill"></span>
           <button md-button router-active [routerLink]=" ['Login'] ">
             Login
