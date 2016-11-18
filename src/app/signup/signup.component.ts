@@ -5,7 +5,7 @@
  * Angular 2 decorators and services
  */
 import {Component} from '@angular/core';
-
+import {RouteConfig, Router} from '@angular/router-deprecated';
 import {SignupService} from './signup.service';
 import {HTTP_PROVIDERS} from '@angular/http';
 /*
@@ -20,5 +20,25 @@ import {HTTP_PROVIDERS} from '@angular/http';
   providers: [...HTTP_PROVIDERS, SignupService]
 })
 export class Signup {
+  userData = {
+    username: '',
+    email: '',
+    password: ''
+  }
 
+  constructor(public signupService:SignupService, public router: Router){
+    signupService
+  }
+
+  signup(){
+    this.signupService.signup(this.userData)
+    .subscribe((res) => {
+        this.userData = {
+          username: '',
+          email: '',
+          password: ''
+        }
+        this.router.navigateByUrl('/summoner')
+    });
+  }
 }

@@ -55,14 +55,14 @@ export default (app, router, passport, auth, admin) => {
         res.status(200);
 
         // Return the user object
-        res.send(req.user);
+        res.send(user);
       });
 
     }) (req, res, next);
   });
 
   router.post('/auth/signup', (req, res, next) => {
-
+    console.log('sign up post fired');
     // Call `authenticate()` from within the route handler, rather than
     // as a route middleware. This gives the callback access to the `req`
     // and `res` object through closure.
@@ -86,7 +86,7 @@ export default (app, router, passport, auth, admin) => {
       }
 
       // Set HTTP status code `204 No Content`
-      res.sendStatus(204);
+      res.send(user);
 
     }) (req, res, next);
   });
