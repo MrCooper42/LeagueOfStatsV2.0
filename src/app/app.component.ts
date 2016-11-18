@@ -43,7 +43,7 @@ import {Matches} from './matches/matches.component';
 import {SummonerD3} from './summoner/summonerD3.component';
 
 // Import Recipes component
-import {Recipes} from './recipes/recipes.component';
+import {Charts} from './charts/charts.component';
 
 /*
  * App Component
@@ -78,8 +78,8 @@ import {Recipes} from './recipes/recipes.component';
           <button md-button router-active [routerLink]=" ['Matches'] ">
             Matches
           </button>
-          <button md-button router-active [routerLink]=" ['Recipes'] ">
-            Recipes
+          <button md-button router-active [routerLink]=" ['Charts'] ">
+            Charts
           </button>
           <button md-button router-active [routerLink]=" ['About'] ">
             About
@@ -107,7 +107,7 @@ import {Recipes} from './recipes/recipes.component';
   { path: '/signup', component: Signup, name: 'Signup' },
   { path: '/summoner', component: Summoner, name: 'Summoner' },
   { path: '/matches', component: Matches, name: 'Matches' },
-  { path: '/redux', component: Recipes, name: 'Recipes' },
+  { path: '/redux', component: Charts, name: 'Charts' },
   // Async load a component using Webpack's require with
   // es6-promise-loader and webpack `require`
   { path: '/about', name: 'About', loader: () => require('es6-promise!./about')('About') },
