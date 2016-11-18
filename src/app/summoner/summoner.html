@@ -25,13 +25,14 @@
       <div class="checkbox">
         <label>
           <input type="checkbox" (click)="deleteSummoner(summoner._id)" bind-checked="false">
-          Delete {{ summoner.text }}
+          Delete
+          {{ summoner.text }}
         </label>
         <h5>{{ stats.playerSummonerId }}</h5>
+        <button type="submit" (click)="summonerStats(summoner)" class="btn btn-primary btn-lg">Summoners's stats</button>
         <button type="submit" class="btn btn-primary btn-lg" (click)="updateMatchList(summoner._id)">Add Matches</button>
         <button type="submit" class="btn btn-primary btn-lg" (click)="getSummoner(summoner._id)">Add MatchData</button>
       </div>
-        <button type="submit" (click)="summonerStats(summoner)" class="btn btn-primary btn-lg">Summoners's stats</button>
     </md-card>
   </div>
   <br>
@@ -61,19 +62,69 @@
         </div>
       </span>
     </div>
-      <div class="container-fluid">
-        <div class="col-xs-12 col-md-6">
-          <div class="">
-            <div class="" *ngFor="let summoner of totalDamage">
-            <li class="list-group-item">
-              <span class="badge">{{summoner.y}}
-                -
-                {{summoner.k}}/{{summoner.d}}/{{summoner.a}}</span>
-              {{summoner.x}}
-            </li>
-          </div>
+    <div class="container-fluid">
+      <div class="col-xs-12 col-md-6">
+        <div class="">
+          <div class="" *ngFor="let summoner of totalDamage">
+          <li class="list-group-item">
+            <span class="badge">{{summoner.y}}
+              -
+              {{summoner.k}}/{{summoner.d}}/{{summoner.a}}</span>
+            {{summoner.x}}
+          </li>
         </div>
       </div>
     </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-md-10">
+      <h3>Team Blue</h3>
+      <div class="" *ngFor="let stat of teamStatsOne">
+        <li class="list-group-item">
+          Tower Kills -
+          {{stat.tk}}
+        </li>
+        <li class="list-group-item">
+          Inhibitor Kills -
+          {{stat.ik}}
+        </li>
+        <li class="list-group-item">
+          Baron Kills -
+          {{stat.bk}}
+        </li>
+        <li class="list-group-item">
+          Dragon Kills -
+          {{stat.dk}}
+        </li>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-md-10">
+      <h3>Team Red</h3>
+      <div class="" *ngFor="let stat of teamStatsTwo">
+        <li class="list-group-item">
+          Tower Kills -
+          {{stat.tk}}
+        </li>
+        <li class="list-group-item">
+          Inhibitor Kills -
+          {{stat.ik}}
+        </li>
+        <li class="list-group-item">
+          Baron Kills -
+          {{stat.bk}}
+        </li>
+        <li class="list-group-item">
+          Dragon Kills -
+          {{stat.dk}}
+        </li>
+      </div>
+    </div>
+  </div>
 </div>
 </div>

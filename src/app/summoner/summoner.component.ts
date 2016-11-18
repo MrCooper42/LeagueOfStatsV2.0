@@ -40,6 +40,8 @@ export class Summoner {
   public matchData: Array<Summoner> = [];
   private matchList: Array<Summoner> = [];
   private totalDamage: Array<Summoner> = [];
+  private teamStatsOne: Array<Summoner> = [];
+  private teamStatsTwo: Array<Summoner> = [];
 
   constructor(public summonerService: SummonerService) {
     console.log('Summoner constructor go!');
@@ -94,6 +96,18 @@ export class Summoner {
             if (res.participants[i].participantId === summId[z].id) {
               dataObj.push({ x: summId[z].summonerName, y: res.participants[i].stats.totalDamageDealt, b: res.participants[i].stats.winner, k: res.participants[i].stats.kills, d: res.participants[i].stats.deaths, a: res.participants[i].stats.assists })
             }
+          }
+        }
+        for (let i = 0; i < res.teams.length; i++) {
+          if (res.teams[i].teamId === 100) {
+            let teamOne = { tk: res.teams[i].towerKills, ik: res.teams[i].inhibitorKills, bk: res.teams[i].baronKills, dk: res.teams[i].dragonKills };
+            console.log(teamOne, 'teamOne')
+            this.teamStatsOne.push(teamOne);
+          }
+          if (res.teams[i].teamId === 200) {
+            let teamTwo = { tk: res.teams[i].towerKills, ik: res.teams[i].inhibitorKills, bk: res.teams[i].baronKills, dk: res.teams[i].dragonKills };
+            console.log(teamTwo, 'teamTwo')
+            this.teamStatsTwo.push(teamTwo);
           }
         }
         this.totalDamage = dataObj;
