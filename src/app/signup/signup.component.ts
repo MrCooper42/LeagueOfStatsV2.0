@@ -33,8 +33,6 @@ export class Signup {
   signup(){
     this.signupService.signup(this.userData)
     .subscribe((res) => {
-
-
         this.userData = {
           username: '',
           email: '',

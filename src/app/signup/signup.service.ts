@@ -9,7 +9,7 @@ export class SignupService {
     let headers = new Headers();
 
     headers.append('Content-Type', 'application/json');
-    return this.http.post('/auth/signup',JSON.stringify(data),{headers: headers})
+    return this.http.post('/api/auth/signup',JSON.stringify(data),{headers: headers})
       .map(res => res.json());
   }
 }

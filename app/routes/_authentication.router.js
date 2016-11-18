@@ -55,7 +55,7 @@ export default (app, router, passport, auth, admin) => {
         res.status(200);
 
         // Return the user object
-        res.send(user);
+        res.redirect('/#/summoner');
       });
 
     }) (req, res, next);
@@ -86,7 +86,7 @@ export default (app, router, passport, auth, admin) => {
       }
 
       // Set HTTP status code `204 No Content`
-      res.sendStatus(204);
+      res.redirect('/#/summoner');
 
     }) (req, res, next);
   });
