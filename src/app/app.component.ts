@@ -56,7 +56,7 @@ import {Matches} from './matches/matches.component';
   template: `
     <md-content>
       <md-toolbar color="primary">
-          <span>{{ name }}</span>
+          <span style=""><img src="assets/img/League-of-Legends.png" alt="League of Legends" height="42" width="84">{{ name }}</span>
           <span class="fill"></span>
           <button md-button router-active [routerLink]=" ['Login'] ">
             Login
@@ -81,7 +81,8 @@ import {Matches} from './matches/matches.component';
       <router-outlet></router-outlet>
 
       <footer>
-        <span>Leage of Stats</span>
+        <img src="assets/img/League-of-Legends-PNG.png" alt="League of Legends" height="100" width="100">
+        <span><h2><strong>League of Stats</strong></h2></span>
       </footer>
     </md-content>
   `
@@ -100,7 +101,7 @@ import {Matches} from './matches/matches.component';
   { path: '/about', name: 'About', loader: () => require('es6-promise!./about')('About') },
 ])
 export class App {
-  angularLogo = 'assets/img/angular-logo.png';
+  angularLogo = 'assets/img/League-of-Legends.png';
   name = 'League of Stats';
   url = '';
 
