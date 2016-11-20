@@ -74,6 +74,7 @@ module.exports = webpackMerge(commonConfig, {
     new webpack.ProvidePlugin({
       NG2D3Module: 'ng2d3',
       d3: 'd3'
+      // 'socket.io-client': 'socket.io.js'
     }),
     // TODO(datatypevoid): investigate the necessity of these two
     // following lines

@@ -42,6 +42,8 @@ ehthumbs.db
 Icon?
 Thumbs.db
 
+LeagueOfStats.pem
+
 # Node Files #
 /node_modules
 /bower_components

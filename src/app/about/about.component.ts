@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
-
+// import { Subject } from 'rxjs/Subject';
+// import { Observable } from 'rxjs/Observable';
+// import * as io from 'socket.io-client';
 /*
  * We're loading this component asynchronously
  * We are using some magic with es6-promise-loader that will wrap the module with a Promise
@@ -23,6 +25,31 @@ console.log('`About` component loaded asynchronously');
     </md-card>
   `,
 })
+
+//
+// export class ChatService {
+//   private url = 'http://localhost:3000';
+//   private socket;
+//
+//   sendMessage(message){
+//     this.socket.emit('add-message', message);
+//   }
+//
+//   getMessages() {
+//     let observable = new Observable(observer => {
+//       this.socket = io(this.url);
+//       this.socket.on('message', (data) => {
+//         observer.next(data);
+//       });
+//       return () => {
+//         this.socket.disconnect();
+//       };
+//     })
+//     return observable;
+//   }
+// }
+
+
 export class About {
   constructor() {
 

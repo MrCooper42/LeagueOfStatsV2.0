@@ -29,6 +29,9 @@ import '@angular2-material/sidenav';
 import '@angular2-material/slide-toggle';
 import '@angular2-material/tabs';
 import '@angular2-material/toolbar';
+// import 'socket.io-client/**/*.*'
+
+
 // look in src/platform/angular2-material2 and src/platform/providers
 
 if ('production' === ENV) {
